@@ -64,7 +64,7 @@ async function main() {
       tax: 20,
       price_ttc: 1200,
       images: {},
-      status: "active",
+      status: "inactive",
       people_capacity: 12,
       rooms: 6,
       bathrooms: 3,
@@ -76,6 +76,9 @@ async function main() {
       notes: "RAS",
       location: {
         connect: { id: 1 },
+      },
+      user: {
+        connect: { id: 5 },
       },
     },
   });
