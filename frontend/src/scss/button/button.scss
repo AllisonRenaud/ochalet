@@ -1,0 +1,19 @@
+button {
+  background-color: inherit;
+  border: inherit;
+  padding: 0;
+}
+
+
+.ant-btn {
+  border-radius: $border-radius-50 !important;
+  &.ant-btn-primary {
+    border-color: $color-green-500 !important;
+    background: $color-green-500 !important;
+    color: $color-white !important;
+    &:hover, &:active, &:focus {
+      border-color: $color-green-100 !important;
+    background: $color-green-100 !important;
+    }
+  }
+}

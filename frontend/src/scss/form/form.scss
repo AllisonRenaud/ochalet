@@ -15,6 +15,7 @@
       border-left: 0;
       border-radius: 0;
       padding-left: 0;
+      background-color: transparent !important;
 
       &:focus, &:focus-within, &:focus-visible, &:hover {
         box-shadow: none !important;
@@ -53,16 +54,16 @@
 
   }
 
-  &__button {
-    .ant-btn-primary {
-      border-radius: 50px;
-      border-color: $color-green-500;
-      background: $color-green-500;
-      &:hover, &:active, &:focus {
-        border-color: $color-green-100;
-      background: $color-green-100;
-      }
-    }
-  }
+  // &__button {
+  //   .ant-btn-primary {
+  //     border-radius: $border-radius-50;
+  //     border-color: $color-green-500;
+  //     background: $color-green-500;
+  //     &:hover, &:active, &:focus {
+  //       border-color: $color-green-100;
+  //     background: $color-green-100;
+  //     }
+  //   }
+  // }
 
 }

@@ -31,6 +31,7 @@ $color-green-900: #007e71;
 
 
 //Orange
+$color-orange-10:  #fff7ed;
 $color-orange-50:  #ff965f;
 $color-orange-100: #ff8c55;
 $color-orange-200: #ff824b;
@@ -44,16 +45,16 @@ $color-orange-900: #d43c05;
 
 
 //Gray
-$color-gray-50: #9da4b2;
-$color-gray-100: #939aa8;
-$color-gray-200: #89909e;
-$color-gray-300: #7f8694;
-$color-gray-400: #757c8a;
+$color-gray-50: #f9fafb;
+$color-gray-100: #f3f4f6;
+$color-gray-200: #e5e7eb;
+$color-gray-300: #d1d5db;
+$color-gray-400: #9ca3af;
 $color-gray-500: #6b7280;
-$color-gray-600: #616876;
-$color-gray-700: #575e6c;
-$color-gray-800: #4d5462;
-$color-gray-900: #434a58;
+$color-gray-600: #4b5563;
+$color-gray-700: #374151;
+$color-gray-800: #1f2937;
+$color-gray-900: #111827;
 
 //Font sizes
 $font-xs: 10px;
@@ -73,3 +74,10 @@ $shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 $shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
 $shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
 $shadow-none: 0 0 #0000;
+
+
+//Border Radius
+$border-radius-8: 8px;
+$border-radius-16: 16px;
+$border-radius-50: 50px;
+

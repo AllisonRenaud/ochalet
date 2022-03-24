@@ -7,10 +7,11 @@
 a {
   color: inherit !important;
 }
+body {
+  background-color: $color-gray-50 !important;
+}
 
-button {
-  background-color: inherit;
-  border: inherit;
-  padding: 0;
+.img-responsive {
+  width: 100%;
 }
 
