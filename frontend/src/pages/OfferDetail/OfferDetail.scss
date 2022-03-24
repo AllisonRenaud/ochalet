@@ -1,0 +1,59 @@
+@import "../../scss/variables";
+
+.offer-detail {
+
+  &__name {
+    margin: 24px 0;
+  }
+
+  &__title {
+    font-size: $font-xxl;
+    font-weight: 500;
+    margin: 70px 0 16px 0px;
+    color: $color-green-900;
+    text-align: center;
+  }
+
+  &__location{
+    font-size: $font-xl;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  &__images{
+    margin-bottom: 24px;
+    &-item {
+      padding: 5px;
+      border-radius: $border-radius-16;
+    }
+    &--default {
+      width: 66%;
+    }
+    &--mosaic {
+      width: 33%;
+    }
+  }
+
+  .offer-widget {
+    background-color: $color-white;
+    border: 1px solid $color-gray-200;
+    border-radius: $border-radius-8;
+    padding: 32px;
+    margin-bottom: 32px;
+
+    &__title {
+      font-size: $font-xl;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    &__amenities{
+      margin-bottom: 16px;
+    }
+  }
+  
+  &__sidebar {
+    margin-right: 32px;
+  }
+
+  }
