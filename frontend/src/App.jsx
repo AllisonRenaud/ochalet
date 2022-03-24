@@ -10,13 +10,25 @@ import Cgv from './pages/Cgv/Cgv';
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
 import Locations from './pages/Locations/Locations';
 import LocationOffers from './pages/LocationOffers/LocationOffers';
+import OfferDetail from './pages/OfferDetail/OfferDetail';
+import Container from './components/Container/Container';
+import Dashboard from './pages/Dashboard/Dashboard';
 
 const App = () => (
   <BrowserRouter>
     <Routes>
       {/* Public */}
 
-      <Route path="/" exact element={<Homepage />} />
+      <Route
+        path="/"
+        exact
+        element={
+          <>
+            <Header />
+            <Homepage />
+          </>
+        }
+      />
 
       <Route
         path="/legal"
@@ -24,7 +36,9 @@ const App = () => (
         element={
           <>
             <Header />
-            <Legal />
+            <Container>
+              <Legal />
+            </Container>
             <Footer />
           </>
         }
@@ -36,66 +50,73 @@ const App = () => (
         element={
           <>
             <Header />
-            <Cgv />
+            <Container>
+              <Cgv />
+            </Container>
             <Footer />
           </>
         }
       />
 
-      <Route
-        path="/login"
-        exact
-        element={
-          <>
-            <Header isTransparent isWhite />
-            <Login />
-          </>
-        }
-      />
+      <Route path="/login" exact element={<Login />} />
 
-      <Route
-        path="/register"
-        exact
-        element={
-          <>
-            <Header isTransparent />
-            <Register />
-          </>
-        }
-      />
+      <Route path="/register" exact element={<Register />} />
 
-      <Route
-        path="/forgot-password"
-        exact
-        element={
-          <>
-            <Header isTransparent />
-            <ForgotPassword />
-          </>
-        }
-      />
+      <Route path="/forgot-password" exact element={<ForgotPassword />} />
 
       {/* Private */}
-
-      <Route
-        path="/locations/:id/offers"
-        exact
-        element={
-          <>
-            <Header isTransparent />
-            <LocationOffers />
-            <Footer />
-          </>
-        }
-      />
 
       <Route
         path="/locations"
         exact
         element={
           <>
-            <Header isTransparent />
-            <Locations />
+            <Header />
+            <Container>
+              <Locations />
+            </Container>
+            <Footer />
+          </>
+        }
+      />
+
+      <Route
+        path="/locations/:id/offers/"
+        exact
+        element={
+          <>
+            <Header />
+            <Container>
+              <LocationOffers />
+            </Container>
+            <Footer />
+          </>
+        }
+      />
+
+      <Route
+        path="/locations/:locationId/offers/:offerId"
+        exact
+        element={
+          <>
+            <Header />
+            <Container>
+              <OfferDetail />
+            </Container>
+            <Footer />
+          </>
+        }
+      />
+
+      <Route
+        path="/dashboard"
+        exact
+        element={
+          <>
+            <Header />
+            <Container>
+              <Dashboard />
+            </Container>
             <Footer />
           </>
         }
