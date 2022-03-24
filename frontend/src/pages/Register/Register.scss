@@ -1,6 +1,6 @@
 @import "../../scss/variables";
 
-.login {
+.register {
   &__container {
     height: 100vh;
   }
@@ -12,10 +12,6 @@
     svg {
       width: 100%;
     }
-  }
-
-  &__logo {
-    padding-bottom: 64px;
   }
 
   &__title {

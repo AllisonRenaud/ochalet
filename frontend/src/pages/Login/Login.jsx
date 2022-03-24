@@ -3,6 +3,7 @@ import { Button, Input, Form } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { useState } from 'react/cjs/react.development';
+import Logo from '../../components/Logo/Logo';
 import LoginImage from '../../components/LoginImage/LoginImage';
 
 const Login = () => {
@@ -21,6 +22,9 @@ const Login = () => {
         </div>
         <div className="login__form w-col-50 flex justify-center">
           <Form layout="vertical" className="form w-col-60" name="login" onFinish={onSubmitHandler} autoComplete="off">
+            <div className="login__logo flex justify-center">
+              <Logo height={60} width={200} />
+            </div>
             <div className="login__title">Se connecter</div>
             <div className="form__control">
               <div className="form__input">
@@ -71,7 +75,7 @@ const Login = () => {
             </Link>
             <div className="form__control ">
               <div className="form__button">
-                <Button className="btn" type="primary" block htmlType="submit">
+                <Button className="btn" type="primary" block htmlType="submit" disabled={!mail || !password}>
                   Valider
                 </Button>
               </div>

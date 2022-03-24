@@ -1,5 +1,6 @@
 import { Input, Form, Button } from 'antd';
 import { useState } from 'react/cjs/react.development';
+import Logo from '../../components/Logo/Logo';
 import PasswordImage from '../../components/PasswordImage/PasswordImage';
 import './ForgotPassword.scss';
 
@@ -14,6 +15,9 @@ const ForgotPassword = () => {
     <div className="forgot-password flex">
       <div className="forgot-password__form w-col-50 flex justify-center items-center">
         <Form layout="vertical" className="form w-col-60" name="forgot-password" onFinish={onSubmitHandler} autoComplete="off">
+          <div className="login__logo flex justify-center">
+            <Logo height={60} width={200} />
+          </div>
           <div className="forgot-password__title">Mot de passe oublié?</div>
           <div className="forgot-password__description">
             Indiquez l'adresse e-mail associée à votre compte pour générer un nouveau mot de passe.
@@ -43,7 +47,7 @@ const ForgotPassword = () => {
           </div>
           <div className="form__control">
             <div className="form__button">
-              <Button className="btn" type="primary" block htmlType="submit">
+              <Button className="btn" type="primary" block htmlType="submit" disabled={!mail}>
                 Valider
               </Button>
             </div>
