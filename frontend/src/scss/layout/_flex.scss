@@ -2,6 +2,10 @@
   display: flex;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .flex-row {
   flex-direction: row;
 }
@@ -72,8 +76,4 @@
 
 .w-col-100 {
   width: 100%;
-}
-
-.h-col-50 {
-  height: 50%;
 }
