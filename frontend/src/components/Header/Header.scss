@@ -1,6 +1,7 @@
 @import "../../scss/variables";
 
 .header{
+  padding: 0 16px;
   background-color: $color-white;
   left: 0;
   width: 100%;
@@ -11,11 +12,16 @@
     box-shadow: $shadow-none;
   }
   
-
   &__logo {
     padding: 8px 24px;
     &--white {
       color: $color-white;
     }
+  }
+
+  &__dashboard-link{
+    font-size: $font-lg;
+    color: $color-green-900;
+    font-weight: 500;
   }
 }
