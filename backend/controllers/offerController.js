@@ -34,6 +34,23 @@ const offerController = {
       response.status(500).send(error.message);
     }
   },
+  getSellerOffers: async (request, response) => {
+    try {
+      const userRequest = request.user;
+
+      if (userRequest.role === "seller") {
+        const user = await prisma.user.findUnique({
+          where: { id: userRequest.id },
+          include: { offers: true },
+        });
+        return response.status(200).json(user.offers);
+      }
+
+      return response.status(401).send("Access denied");
+    } catch (error) {
+      return response.status(500).send(error.message);
+    }
+  },
 };
 
 module.exports = offerController;

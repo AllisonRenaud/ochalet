@@ -1,9 +1,16 @@
 const offerController = require("../controllers/offerController");
+const authMiddleware = require("../middlewares/authMiddleware");
 
 const offerRouter = require("express").Router();
 
 offerRouter.route("/offers/").get(offerController.findAll);
-offerRouter.route("/offers/:offerId").get(offerController.findById);
-offerRouter.route("/offers/create").post(offerController.create);
+offerRouter.route("/offers/detail/:offerId/").get(offerController.findById);
+offerRouter.post(offerController.create);
+
+offerRouter.get(
+  "/offers/my-offers/",
+  authMiddleware,
+  offerController.getSellerOffers
+);
 
 module.exports = offerRouter;
