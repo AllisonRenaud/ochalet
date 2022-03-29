@@ -6,9 +6,11 @@
   border: 1px solid $color-gray-200;
   border-radius: $border-radius-8;
   padding: 32px;
+  color: $color-green-600;
+  font-size: $font-xl;
 }
 
-.offers {
+.offers, .users {
 
   &__container {
     margin: 32px;
@@ -16,6 +18,12 @@
     border: 1px solid $color-gray-200;
     border-radius: $border-radius-8;
     padding: 32px;
+  }
+
+  &__title {
+    font-size: $font-xxl;
+    font-weight: 600;
+    margin-bottom: 56px;
   }
 
   

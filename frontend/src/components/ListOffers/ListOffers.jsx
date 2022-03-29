@@ -1,7 +1,6 @@
-import OfferCard from '../../components/OfferCard/OfferCard';
-import './Dashboard.scss';
+import OfferCard from '../OfferCard/OfferCard';
 
-const Dashboard = () => {
+const ListOffers = () => {
   const offers = [
     {
       id: 1,
@@ -66,25 +65,17 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className="container flex">
-      <div className="dashboard__sidebar flex flex-col w-col-30">
-        <div className="sidebar-item">Profil</div>
-        <div className="sidebar-item">Offres</div>
-        <div className="sidebar-item">Utilisateurs</div>
-      </div>
-
-      <div className="offers__container w-col-70">
-        <div className="offers__title">Toutes les offres</div>
-        <div className="offers__cards flex flex-wrap">
-          {offers.map((offer) => (
-            <div className="offers__card w-col-50">
-              <OfferCard offer={offer} key={offer.id} />
-            </div>
-          ))}
-        </div>
+    <div className="offers__container w-col-70">
+      <div className="offers__title flex justify-center">Toutes les offres</div>
+      <div className="offers__cards flex flex-wrap">
+        {offers.map((offer) => (
+          <div className="offers__card w-col-50">
+            <OfferCard offer={offer} key={offer.id} />
+          </div>
+        ))}
       </div>
     </div>
   );
 };
 
-export default Dashboard;
+export default ListOffers;

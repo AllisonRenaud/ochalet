@@ -12,12 +12,17 @@ import Locations from './pages/Locations/Locations';
 import LocationOffers from './pages/LocationOffers/LocationOffers';
 import OfferDetail from './pages/OfferDetail/OfferDetail';
 import Container from './components/Container/Container';
-import Dashboard from './pages/Dashboard/Dashboard';
+import UserCard from './components/UserCard/UserCard';
+import DashboardUser from './pages/Dashboard/DashboardUser/DashboardUser';
+import DashboardSeller from './pages/Dashboard/DashboardSeller/DashboardSeller';
+import DashboardAdmin from './pages/Dashboard/DashboardAdmin/DashboardAdmin';
 
 const App = () => (
   <BrowserRouter>
     <Routes>
       {/* Public */}
+
+      <Route path="/usercard" exact element={<UserCard />} />
 
       <Route
         path="/"
@@ -109,13 +114,41 @@ const App = () => (
       />
 
       <Route
-        path="/dashboard"
+        path="/dashboard/user"
         exact
         element={
           <>
             <Header />
             <Container>
-              <Dashboard />
+              <DashboardUser />
+            </Container>
+            <Footer />
+          </>
+        }
+      />
+
+      <Route
+        path="/dashboard/seller"
+        exact
+        element={
+          <>
+            <Header />
+            <Container>
+              <DashboardSeller />
+            </Container>
+            <Footer />
+          </>
+        }
+      />
+
+      <Route
+        path="/dashboard/admin"
+        exact
+        element={
+          <>
+            <Header />
+            <Container>
+              <DashboardAdmin />
             </Container>
             <Footer />
           </>
