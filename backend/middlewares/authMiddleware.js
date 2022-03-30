@@ -26,10 +26,6 @@ module.exports = async (request, response, next) => {
 
     next();
   } catch (error) {
-    console.log(
-      "🚀 -> file: authMiddleware.js -> line 28 -> module.exports= -> error",
-      error
-    );
     response.status(401).json({ error: "Invalid request" });
   }
 };
