@@ -1,9 +1,5 @@
-import { Button } from 'antd';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import DashboardAdmin from '../../pages/Dashboard/DashboardAdmin/DashboardAdmin';
-import DashboardSeller from '../../pages/Dashboard/DashboardSeller/DashboardSeller';
-import DashboardUser from '../../pages/Dashboard/DashboardUser/DashboardUser';
 import Logo from '../Logo/Logo';
 import './Header.scss';
 
