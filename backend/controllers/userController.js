@@ -31,9 +31,22 @@ const userController = {
   },
   createSeller: async (request, response) => {
     try {
+      const email = request.body.email;
+      const password = request.body.password;
+
+      const userFound = await prisma.user.findUnique({
+        where: { email: email },
+      });
+
+      if (userFound) {
+        return response.status(403).send("User already registered");
+      }
+
+      const passwordHashed = await bcrypt.hash(password, 10);
       const user = await prisma.user.create({
         data: {
           ...request.body,
+          password: passwordHashed,
           role: "seller",
         },
       });
