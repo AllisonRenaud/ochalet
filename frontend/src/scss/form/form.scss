@@ -8,7 +8,7 @@
 
   &__input {
     margin-bottom: 16px;
-    .ant-input , .ant-input-password{
+    .ant-input , .ant-input-password, .ant-radio-button {
       border-bottom: 2px solid;
       border-top: 0;
       border-right: 0;
@@ -17,7 +17,7 @@
       padding-left: 0;
       background-color: transparent !important;
 
-      &:focus, &:focus-within, &:focus-visible, &:hover {
+      &:focus, &:focus-within, &:focus-visible, &:hover { 
         box-shadow: none !important;
         outline: none !important;
         border-color: $color-green-500 !important;
@@ -30,6 +30,25 @@
 
     }
 
+  }
+
+  &__radio {
+
+    .ant-radio-button-wrapper {
+      &:hover {
+        color: $color-green-500 !important;
+      }
+    }
+
+    .ant-radio-button-wrapper-checked {
+      background: $color-green-500 !important;
+      border-color:$color-green-500 !important;
+
+      &:hover {
+        color: $color-white !important;
+      }
+      
+    }
   }
 
   &__forgot-password {
@@ -67,3 +86,4 @@
   // }
 
 }
+

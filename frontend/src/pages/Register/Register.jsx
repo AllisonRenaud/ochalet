@@ -1,12 +1,13 @@
 import './Register.scss';
 import { useState } from 'react/cjs/react.development';
-import { Button, Input, Form } from 'antd';
+import { Button, Input, Form, Radio } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import Logo from '../../components/Logo/Logo';
 import RegisterImage from '../../components/RegisterImage/RegisterImage';
 
 const Register = () => {
+  const [role, setRole] = useState('');
   const [firstName, setFirstName] = useState('');
   const [name, setName] = useState('');
   const [mail, setMail] = useState('');
@@ -29,6 +30,28 @@ const Register = () => {
             </div>
             <div className="register__title">S'inscrire</div>
             <div className="form__control">
+              <div className="form__radio">
+                <Form.Item
+                  name="role"
+                  value={role}
+                  required={false}
+                  onChange={(event) => setRole(event.target.value)}
+                  label="Je suis"
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Sélectionnez une option'
+                    }
+                  ]}>
+                  <Radio.Group buttonStyle="solid">
+                    <Radio.Button value="user">Vacancier</Radio.Button>
+                    <Radio.Button value="seller">Propriétaire</Radio.Button>
+                  </Radio.Group>
+                </Form.Item>
+              </div>
+            </div>
+
+            <div className="form__control">
               <div className="form__input">
                 <Form.Item
                   name="first name"
@@ -40,6 +63,11 @@ const Register = () => {
                   ]}>
                   <Input value={firstName} onChange={(event) => setFirstName(event.target.value)} placeholder="Nom" />
                 </Form.Item>
+              </div>
+            </div>
+
+            <div className="form__control">
+              <div className="form__input">
                 <Form.Item
                   name="name"
                   rules={[
@@ -50,6 +78,11 @@ const Register = () => {
                   ]}>
                   <Input value={name} onChange={(event) => setName(event.target.value)} placeholder="Prénom" />
                 </Form.Item>
+              </div>
+            </div>
+
+            <div className="form__control">
+              <div className="form__input">
                 <Form.Item
                   name="email"
                   rules={[
@@ -121,7 +154,7 @@ const Register = () => {
                   type="primary"
                   block
                   htmlType="submit"
-                  disabled={!firstName || !name || !mail || !password}>
+                  disabled={!role || !firstName || !name || !mail || !password}>
                   Valider
                 </Button>
               </div>
