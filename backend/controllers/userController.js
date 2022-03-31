@@ -21,7 +21,7 @@ const userController = {
         data: {
           ...request.body,
           password: passwordHashed,
-          role: "user",
+          role: "client",
         },
       });
       response.status(200).json(user);
@@ -53,6 +53,55 @@ const userController = {
       response.status(200).json(user);
     } catch (error) {
       response.status(500).send(error.message);
+    }
+  },
+  getUserProfile: async (request, response) => {
+    try {
+      const userId = request.user.id;
+      const user = await prisma.user.findUnique({ where: { id: userId } });
+      delete user.password;
+
+      response.status(200).json(user);
+    } catch (error) {
+      response.status(401).json({ error: error });
+    }
+  },
+  updateUserProfile: async (request, response) => {
+    try {
+      const userId = request.user.id;
+      const newUser = request.body;
+      const user = await prisma.user.update({
+        data: newUser,
+        where: { id: userId },
+      });
+      delete user.password;
+      response.status(200).json(user);
+    } catch (error) {
+      response.status(401).json({ error: error });
+    }
+  },
+  getUsers: async (request, response) => {
+    try {
+      const users = await prisma.user.findMany();
+
+      const updatedUsers = users.map((user) => {
+        const userWithoutPassword = user;
+        delete userWithoutPassword.password;
+        return userWithoutPassword;
+      });
+
+      response.status(200).json(updatedUsers);
+    } catch (error) {
+      response.status(401).json({ error: error });
+    }
+  },
+  deleteUser: async (request, response) => {
+    try {
+      const userId = parseInt(request.params.userId);
+      const deleteUser = await prisma.user.delete({ where: { id: userId } });
+      response.status(200).json({ message: "User successfully deleted" });
+    } catch (error) {
+      response.status(401).json({ error: error });
     }
   },
 };
