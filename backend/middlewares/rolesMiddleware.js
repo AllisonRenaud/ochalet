@@ -7,7 +7,7 @@ module.exports = (roles) => {
       }
       return response.status(401).json({ error: "Access denied" });
     } catch (error) {
-      return response.status(401).json({ error: "Invalid request" });
+      return response.status(401).json({ error: error });
     }
   };
 };
