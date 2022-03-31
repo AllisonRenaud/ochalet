@@ -16,6 +16,7 @@ import UserCard from './components/UserCard/UserCard';
 import DashboardUser from './pages/Dashboard/DashboardUser/DashboardUser';
 import DashboardSeller from './pages/Dashboard/DashboardSeller/DashboardSeller';
 import DashboardAdmin from './pages/Dashboard/DashboardAdmin/DashboardAdmin';
+import Booking from './pages/Booking/Booking';
 
 const App = () => (
   <BrowserRouter>
@@ -149,6 +150,20 @@ const App = () => (
             <Header />
             <Container>
               <DashboardAdmin />
+            </Container>
+            <Footer />
+          </>
+        }
+      />
+
+      <Route
+        path="/booking"
+        exact
+        element={
+          <>
+            <Header />
+            <Container>
+              <Booking />
             </Container>
             <Footer />
           </>

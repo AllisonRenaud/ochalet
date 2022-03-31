@@ -7,6 +7,17 @@
 a {
   color: inherit !important;
 }
+
+hr {
+  height: 1px !important;
+  background-color: $color-gray-300;
+  border: none;
+}
+
+.link {
+  color: $color-green-900 !important;
+}
+
 body {
   background-color: $color-gray-50 !important;
 }
@@ -15,3 +26,51 @@ body {
   width: 100%;
 }
 
+h1 {
+  font-size: 36px;
+  line-height: 40px;
+}
+
+h2 {
+  font-size: 30px;
+  line-height: 40px;
+}
+
+h3 {
+  font-size: 24px;
+  line-height: 40px;
+}
+
+h4 {
+  font-size: 18px;
+  line-height: 20px;
+}
+
+h5 {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+h6 {
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.font-xs{
+font-size: $font-xs;
+} 
+.font-sm{
+font-size: $font-sm;
+} 
+.font-base{
+font-size: $font-base;
+} 
+.font-lg{
+font-size: $font-lg;
+} 
+.font-xl{
+font-size: $font-xl;
+} 
+.font-xxl{
+font-size: $font-xxl;
+} 

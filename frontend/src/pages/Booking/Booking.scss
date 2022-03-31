@@ -1,0 +1,51 @@
+@import "../../scss/variables";
+
+.booking {
+
+  &__container {
+    margin: 32px;
+    background-color: $color-white;
+    border: 1px solid $color-gray-200;
+    border-radius: $border-radius-8;
+    padding: 32px;
+
+  }
+
+
+  &__card {
+    padding: 24px 42px;
+  }
+
+  &__dates {
+    margin: 24px 0;
+  }
+
+  &__terms {
+    font-size: $font-sm;
+  }
+
+  &__section {
+    margin: 32px 0;
+
+    img {
+      border-radius: $border-radius-8;
+    }
+  }
+
+  .link {
+    font-weight: 500;
+  }
+
+
+  &__detail {
+    border: 1px solid $color-gray-200;
+    border-radius: $border-radius-8;
+    padding: 24px;
+    margin: 0 24px;
+  }
+
+  &__description {
+    margin: 0 8px;
+  }
+
+}
