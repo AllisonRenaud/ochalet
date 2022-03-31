@@ -2,7 +2,6 @@ import './UpdateProfile.scss';
 import { useState } from 'react/cjs/react.development';
 import { Button, Input, Form } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
 
 const UpdateProfile = () => {
   const [firstName, setFirstName] = useState('');
