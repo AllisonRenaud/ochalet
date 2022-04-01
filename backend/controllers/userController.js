@@ -24,6 +24,8 @@ const userController = {
           role: "client",
         },
       });
+
+      delete user.password;
       response.status(200).json(user);
     } catch (error) {
       response.status(500).send(error.message);
@@ -50,6 +52,7 @@ const userController = {
           role: "seller",
         },
       });
+      delete user.password;
       response.status(200).json(user);
     } catch (error) {
       response.status(500).send(error.message);
