@@ -17,13 +17,15 @@ import DashboardUser from './pages/Dashboard/DashboardUser/DashboardUser';
 import DashboardSeller from './pages/Dashboard/DashboardSeller/DashboardSeller';
 import DashboardAdmin from './pages/Dashboard/DashboardAdmin/DashboardAdmin';
 import Booking from './pages/Booking/Booking';
+import CreateOffer from './pages/CreateOffer/CreateOffer';
+import Error404 from './pages/Error404/Error404';
 
 const App = () => (
   <BrowserRouter>
     <Routes>
       {/* Public */}
 
-      <Route path="/usercard" exact element={<UserCard />} />
+      <Route path="/usercard/" exact element={<UserCard />} />
 
       <Route
         path="/"
@@ -37,7 +39,7 @@ const App = () => (
       />
 
       <Route
-        path="/legal"
+        path="/legal/"
         exact
         element={
           <>
@@ -51,7 +53,7 @@ const App = () => (
       />
 
       <Route
-        path="/cgv"
+        path="/cgv/"
         exact
         element={
           <>
@@ -64,16 +66,27 @@ const App = () => (
         }
       />
 
-      <Route path="/login" exact element={<Login />} />
+      <Route
+        path="/error/"
+        exact
+        element={
+          <>
+            <Header />
+            <Error404 />
+          </>
+        }
+      />
 
-      <Route path="/register" exact element={<Register />} />
+      <Route path="/login/" exact element={<Login />} />
 
-      <Route path="/forgot-password" exact element={<ForgotPassword />} />
+      <Route path="/register/" exact element={<Register />} />
+
+      <Route path="/forgot-password/" exact element={<ForgotPassword />} />
 
       {/* Private */}
 
       <Route
-        path="/locations"
+        path="/locations/"
         exact
         element={
           <>
@@ -101,7 +114,7 @@ const App = () => (
       />
 
       <Route
-        path="/locations/:locationId/offers/:offerId"
+        path="/locations/:locationId/offers/:offerId/"
         exact
         element={
           <>
@@ -115,7 +128,7 @@ const App = () => (
       />
 
       <Route
-        path="/dashboard/user"
+        path="/dashboard/user/"
         exact
         element={
           <>
@@ -129,7 +142,7 @@ const App = () => (
       />
 
       <Route
-        path="/dashboard/seller"
+        path="/dashboard/seller/"
         exact
         element={
           <>
@@ -143,7 +156,7 @@ const App = () => (
       />
 
       <Route
-        path="/dashboard/admin"
+        path="/dashboard/admin/"
         exact
         element={
           <>
@@ -157,13 +170,27 @@ const App = () => (
       />
 
       <Route
-        path="/booking"
+        path="/booking/"
         exact
         element={
           <>
             <Header />
             <Container>
               <Booking />
+            </Container>
+            <Footer />
+          </>
+        }
+      />
+
+      <Route
+        path="/create-offer/"
+        exact
+        element={
+          <>
+            <Header />
+            <Container>
+              <CreateOffer />
             </Container>
             <Footer />
           </>
