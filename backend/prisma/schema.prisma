@@ -79,10 +79,11 @@ model Location {
 }
 
 model Booking {
-  id     Int      @id @default(autoincrement())
-  start  DateTime
-  end    DateTime
-  status String
+  id        Int    @id @default(autoincrement())
+  dateStart String
+  dateEnd   String
+  status    String
+  sellerId  Int
 
 
   // Relations
