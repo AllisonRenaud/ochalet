@@ -44,16 +44,36 @@
     &__title {
       font-size: $font-xl;
       font-weight: 600;
-      margin-bottom: 16px;
+      margin: 16px 0;
+    }
+
+    &__description {
+      font-size: $font-lg;
     }
 
     &__amenities{
       margin-bottom: 16px;
+    }    
+
+    .offer-detail {
+
+      &__ameneties-item {
+          font-size: $font-lg;
+          margin-bottom: 3px;
+      }
+
+      &__extra-detail {
+        font-size: $font-lg;
+      }
     }
   }
   
   &__sidebar {
     margin-right: 32px;
+  }
+
+  &__button {
+    margin-bottom: 24px;
   }
 
   }
