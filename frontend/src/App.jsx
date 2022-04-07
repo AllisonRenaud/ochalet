@@ -12,20 +12,16 @@ import Locations from './pages/Locations/Locations';
 import LocationOffers from './pages/LocationOffers/LocationOffers';
 import OfferDetail from './pages/OfferDetail/OfferDetail';
 import Container from './components/Container/Container';
-import UserCard from './components/UserCard/UserCard';
 import DashboardUser from './pages/Dashboard/DashboardUser/DashboardUser';
 import DashboardSeller from './pages/Dashboard/DashboardSeller/DashboardSeller';
 import DashboardAdmin from './pages/Dashboard/DashboardAdmin/DashboardAdmin';
 import Booking from './pages/Booking/Booking';
-import CreateOffer from './pages/CreateOffer/CreateOffer';
 import Error404 from './pages/Error404/Error404';
 
 const App = () => (
   <BrowserRouter>
     <Routes>
       {/* Public */}
-
-      <Route path="/usercard/" exact element={<UserCard />} />
 
       <Route
         path="/"
@@ -66,22 +62,13 @@ const App = () => (
         }
       />
 
-      <Route
-        path="/error/"
-        exact
-        element={
-          <>
-            <Header />
-            <Error404 />
-          </>
-        }
-      />
-
       <Route path="/login/" exact element={<Login />} />
 
       <Route path="/register/" exact element={<Register />} />
 
       <Route path="/forgot-password/" exact element={<ForgotPassword />} />
+
+      <Route path="*" element={<Error404 />} />
 
       {/* Private */}
 
@@ -177,20 +164,6 @@ const App = () => (
             <Header />
             <Container>
               <Booking />
-            </Container>
-            <Footer />
-          </>
-        }
-      />
-
-      <Route
-        path="/create-offer/"
-        exact
-        element={
-          <>
-            <Header />
-            <Container>
-              <CreateOffer />
             </Container>
             <Footer />
           </>
