@@ -1,7 +1,12 @@
 import { Button } from 'antd';
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+
+import { useNavigate, useParams } from 'react-router-dom';
 import './OfferDetail.scss';
+
+import 'react-date-range/dist/styles.css';
+import 'react-date-range/dist/theme/default.css';
+import { DateRange } from 'react-date-range';
 
 import IconBed from '../../components/icons/IconBed/IconBed';
 import IconBathroom from '../../components/icons/IconBathroom/IconBathroom';
@@ -16,6 +21,22 @@ const OfferDetail = () => {
   const [offerIdSelected, setOfferIdSelected] = useState('');
 
   const { offerId, locationId } = useParams();
+  const navigate = useNavigate();
+
+  // useEffect(() => dispatch(fetchOffer(parseInt(id, 10))), []);
+
+  // const offerSelected = useSelector((state) => state.offers.offerSelected);
+
+  // const getDatesDisabled = (bookings) => {
+  //   const reservations = bookings.map((reservation) =>
+  //     eachDayOfInterval({
+  //       start: new Date(reservation.reservation_start),
+  //       end: new Date(reservation.reservation_end)
+  //     })
+  //   );
+  //   const newArray = Array.prototype.concat.apply([], reservations);
+  //   return newArray;
+  // };
 
   const details = {
     offerId: 1,
@@ -64,7 +85,22 @@ const OfferDetail = () => {
           <div className="offer-detail__sidebar w-col-30 flex flex-col">
             <div className="offer-widget flex flex-col justify-center">
               <div className="offer-widget__title">Calendrier</div>
-              <div className="offer-widget__description">11111111</div>
+              <div className="offer-widget__description">
+                <DateRange
+                  className="offer-widget__calendar"
+                  // onChange={onChangeDatePicker}
+                  moveRangeOnFirstSelection={false}
+                  // ranges={[dateRange]}
+                  // locale={frLocale}
+                  dateDisplayFormat="dd.MM.yyyy"
+                  minDate={new Date()}
+                  // maxDate={addMonths(new Date(), 12)}
+                  startDatePlaceholder="Arrivée"
+                  endDatePlaceholder="Départ"
+                  // disabledDates={getDatesDisabled(offerSelected.bookings)}
+                  rangeColors={['#0dc948']}
+                />
+              </div>
             </div>
             <div className="offer-widget flex flex-col justify-center">
               <div className="offer-widget__title">Prix TTC</div>
@@ -146,8 +182,8 @@ const OfferDetail = () => {
             </div>
           </div>
         </div>
-        <div className="">
-          <Button type="primary" block htmlType="submit">
+        <div className="offer-detail__button flex justify-center">
+          <Button type="primary" htmlType="submit" size="large" onClick={() => navigate('/booking/')}>
             Réserver
           </Button>
         </div>
