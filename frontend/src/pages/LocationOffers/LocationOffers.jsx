@@ -83,12 +83,15 @@ const LocationOffers = () => {
   ];
 
   return (
-    <div className="offers flex justify-center">
-      {offers.map((offer) => (
-        <div className="offers__card">
-          <OfferCard offer={offer} key={offer.id} />
-        </div>
-      ))}
+    <div className="offers">
+      <div className="offers__title">Les chalets</div>
+      <div className="offers__card flex justify-center">
+        {offers.map((offer) => (
+          <div className="offers__card">
+            <OfferCard offer={offer} key={offer.id} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

@@ -42,12 +42,15 @@ const Locations = () => {
   ];
 
   return (
-    <div className="locations flex justify-center">
-      {locations.map((location) => (
-        <div className="locations__card">
-          <LocationCard location={location} key={location.id} />
-        </div>
-      ))}
+    <div className="locations ">
+      <div className="locations__title">Les destinations</div>
+      <div className="locations__card flex justify-center">
+        {locations.map((location) => (
+          <div className="locations__card">
+            <LocationCard location={location} key={location.id} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
