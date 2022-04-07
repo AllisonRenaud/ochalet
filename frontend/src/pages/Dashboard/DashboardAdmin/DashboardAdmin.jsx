@@ -10,12 +10,12 @@ const DashboardAdmin = () => {
     <div className="container flex">
       <div className="dashboard__sidebar flex flex-col w-col-30">
         <div className="sidebar-item">
-          <Button className="btn" type="primary" block htmlType="button" onClick={() => setSelectedTab('offers')}>
+          <Button className="btn" type="primary" block size="small" htmlType="button" onClick={() => setSelectedTab('offers')}>
             Offres
           </Button>
         </div>
         <div className="sidebar-item">
-          <Button className="btn" type="primary" block htmlType="button" onClick={() => setSelectedTab('users')}>
+          <Button className="btn" type="primary" block size="small" htmlType="button" onClick={() => setSelectedTab('users')}>
             Utilisateurs
           </Button>
         </div>

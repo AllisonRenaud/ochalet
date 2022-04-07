@@ -1,4 +1,6 @@
+import { Button } from 'antd';
 import UserCard from '../UserCard/UserCard';
+import './ListUsers.scss';
 
 const ListUsers = () => {
   const users = [
@@ -45,8 +47,17 @@ const ListUsers = () => {
       <div className="users__title flex justify-center">Tous les utilisateurs</div>
       <div className="users__cards flex flex-wrap">
         {users.map((user) => (
-          <div className="users__card w-col-50">
-            <UserCard user={user} key={user.id} />
+          <div className="w-col-50" key={user.id}>
+            <div className="users__card">
+              <UserCard user={user} />
+            </div>
+            <div className="users__buttons flex justify-center">
+              <div className="users__button">
+                <Button type="default" block size="small" htmlType="button">
+                  Supprimer
+                </Button>
+              </div>
+            </div>
           </div>
         ))}
       </div>
