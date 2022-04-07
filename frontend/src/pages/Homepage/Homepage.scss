@@ -1,0 +1,30 @@
+@import "../../scss/variables";
+
+.homepage {
+
+  .slider {
+    height: 700px;
+   background-repeat: no-repeat;
+   background-position: 50% 80%;
+
+   &__info {
+     padding: 24px;
+   }
+
+   &__title {
+     font-size: 56px;
+     font-weight: 500;
+     color: $color-white;
+     line-height: 1;
+     margin-bottom: 16px;
+   }
+  }
+
+  .homepage-locations {
+    padding: 24px;
+    &__title {
+      font-size: $font-xxl;
+      font-weight: 500;
+    }
+  }
+}
