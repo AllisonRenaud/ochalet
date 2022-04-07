@@ -60,9 +60,11 @@ const Booking = () => {
                   les conditions générales de vente.
                 </Link>
               </p>
-              <Button className="btn" type="primary" block htmlType="submit">
-                Confirmer et payer
-              </Button>
+              <div className="booking__button flex justify-center">
+                <Button className="btn" type="primary" size="large" htmlType="submit">
+                  Confirmer et payer
+                </Button>
+              </div>
             </div>
           </div>
           <div className="booking__card w-col-60">
