@@ -1,4 +1,5 @@
-import { ChangeEvent, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
 import FileItem from './FileItem';
 import IconUpload from '../icons/IconUpload/IconUpload';
@@ -89,7 +90,7 @@ const DropFileInput = ({ onFileChange, limitFiles }) => {
       <div className="drop-file__list">
         {fileList.length > 0 &&
           fileList.map((file, index) => (
-            <div className="drop-file__list-item" key={new Date().getUTCMilliseconds()}>
+            <div className="drop-file__list-item" key={uuidv4()}>
               <FileItem canRemove fileIndex={index} name={file.name} onRemove={onFileRemove} type={file.type} />
             </div>
           ))}

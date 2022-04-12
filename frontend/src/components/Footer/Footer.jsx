@@ -3,7 +3,7 @@ import './Footer.scss';
 import { Link } from 'react-router-dom';
 
 const Footer = ({ isTransparent }) => (
-  <footer className={`footer ${isTransparent ? 'footer--transparent' : ''} flex justify-center justify-evenly`}>
+  <footer className={`footer ${isTransparent ? 'footer--transparent' : ''} flex justify-center items-center justify-evenly`}>
     <Link to="/cgv">
       <div> CGV </div>
     </Link>

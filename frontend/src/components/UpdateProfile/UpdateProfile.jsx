@@ -1,211 +1,148 @@
 import './UpdateProfile.scss';
-import { useState } from 'react/cjs/react.development';
-import { Button, Input, Form } from 'antd';
+import { useEffect, useState } from 'react/cjs/react.development';
+import { Button, Input, Form, Alert } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProfileAction, updateProfileAction } from '../../store/actions/userActions';
 
 const UpdateProfile = () => {
+  const dispatch = useDispatch();
+  const userProfile = useSelector((state) => state.user.profile);
+
+  const [isSending, setIsSending] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
+
+  const isLoadingUser = useSelector((state) => state.user.isLoading);
+
   const [firstName, setFirstName] = useState('');
-  const [name, setName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [mail, setMail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [streetNumber, setStreetNumber] = useState('');
-  const [streetName, setStreetName] = useState('');
-  const [zipCode, setZipCode] = useState('');
-  const [cityName, setCityName] = useState('');
-  const [country, setCountry] = useState('');
   const [password, setPassword] = useState('');
 
+  useEffect(() => {
+    dispatch(getProfileAction());
+  }, []);
+
+  useEffect(() => {
+    setFirstName(userProfile.first_name);
+    setLastName(userProfile.last_name);
+    setMail(userProfile.mail);
+    setPassword(userProfile.password);
+  }, [userProfile]);
+
   const onSubmitHandler = (values) => {
-    console.log(values);
+    delete values.new_password;
+    dispatch(updateProfileAction(values));
+
+    setIsSending(true);
   };
+
+  useEffect(() => {
+    if (isSending && !isLoadingUser) {
+      setShowMessage(true);
+    }
+  }, [isLoadingUser, isSending]);
 
   return (
     <div className="profile__container w-col-70">
-      <div className="profile__title flex justify-center">Mes informations</div>
+      <h2 className="text-green-900">Mes informations</h2>
+
+      {showMessage && (
+        <div className="profile__alert">
+          <Alert
+            message="Modifications enregistrées"
+            description="Nous avons correctement modifié et enregistré vos informations"
+            type="success"
+            showIcon
+          />
+        </div>
+      )}
 
       <div className="profile__form flex justify-center">
-        <Form layout="vertical" className="form w-col-60" name="profile" onFinish={onSubmitHandler} autoComplete="off">
-          <div className="form__control">
-            <div className="form__input">
-              <Form.Item
-                name="first-name"
-                rules={[
-                  {
-                    required: true,
-                    message: 'Renseignez votre nom de famille'
-                  }
-                ]}>
-                <Input value={firstName} onChange={(event) => setFirstName(event.target.value)} placeholder="Nom" />
-              </Form.Item>
-              <Form.Item
-                name="name"
-                rules={[
-                  {
-                    required: true,
-                    message: 'Renseignez votre prénom'
-                  }
-                ]}>
-                <Input value={name} onChange={(event) => setName(event.target.value)} placeholder="Prénom" />
-              </Form.Item>
-
-              <Form.Item
-                name="email"
-                rules={[
-                  {
-                    required: true,
-                    message: 'Renseignez une adresse mail valide'
-                  },
-                  {
-                    type: 'email',
-                    message: 'Renseignez une adresse mail valide'
-                  }
-                ]}>
-                <Input value={mail} onChange={(event) => setMail(event.target.value)} placeholder="Adresse Mail" />
-              </Form.Item>
-
-              <Form.Item
-                name="phone"
-                rules={[
-                  {
-                    required: true,
-                    message: 'Renseignez votre numéro de téléphone'
-                  }
-                ]}>
-                <Input value={phone} onChange={(event) => setPhone(event.target.value)} placeholder="Téléphone" />
-              </Form.Item>
-
-              <Form.Item
-                name="street-number"
-                rules={[
-                  {
-                    required: true,
-                    message: 'Renseignez votre numéro de rue'
-                  }
-                ]}>
-                <Input
-                  value={streetNumber}
-                  onChange={(event) => setStreetNumber(event.target.value)}
-                  placeholder="Numéro de Rue"
-                />
-              </Form.Item>
-
-              <Form.Item
-                name="street-name"
-                rules={[
-                  {
-                    required: true,
-                    message: 'Renseignez le nom de votre rue'
-                  }
-                ]}>
-                <Input value={streetName} onChange={(event) => setStreetName(event.target.value)} placeholder="Rue" />
-              </Form.Item>
-
-              <Form.Item
-                name="zip-code"
-                rules={[
-                  {
-                    required: true,
-                    message: 'Renseignez votre code postal'
-                  }
-                ]}>
-                <Input value={zipCode} onChange={(event) => setZipCode(event.target.value)} placeholder="Code Postal" />
-              </Form.Item>
-
-              <Form.Item
-                name="city-name"
-                rules={[
-                  {
-                    required: true,
-                    message: 'Renseignez votre ville'
-                  }
-                ]}>
-                <Input value={cityName} onChange={(event) => setCityName(event.target.value)} placeholder="Ville" />
-              </Form.Item>
-
-              <Form.Item
-                name="country"
-                rules={[
-                  {
-                    required: true,
-                    message: 'Renseignez votre pays'
-                  }
-                ]}>
-                <Input value={country} onChange={(event) => setCountry(event.target.value)} placeholder="Pays" />
-              </Form.Item>
-            </div>
-          </div>
-
-          <div className="form__control">
-            <div className="form__input">
-              <Form.Item
-                name="password"
-                rules={[
-                  {
-                    required: true,
-                    message: 'Renseignez un mot de passe'
-                  }
-                ]}>
-                <Input.Password
-                  className="profile-password"
-                  value={password}
-                  onChange={(event) => setPassword(event.target.value)}
-                  placeholder="Nouveau Mot de Passe"
-                  iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
-                />
-              </Form.Item>
-              <Form.Item
-                name="confirm password"
-                dependencies={['password']}
-                rules={[
-                  {
-                    required: true,
-                    message: 'Confirmez le mot de passe'
-                  },
-                  ({ getFieldValue }) => ({
-                    validator(_, value) {
-                      if (!value || getFieldValue('password') === value) {
-                        return Promise.resolve();
-                      }
-
-                      return Promise.reject(new Error('Les deux mots de passe doivent être identiques'));
+        {userProfile && (
+          <Form
+            layout="vertical"
+            className="form w-col-50"
+            onFinish={onSubmitHandler}
+            autoComplete="off"
+            initialValues={userProfile}>
+            <div className="form__control">
+              <div className="form__input">
+                <Form.Item
+                  name="first_name"
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Renseignez votre prénom'
                     }
-                  })
-                ]}>
-                <Input.Password
-                  className="profile-password"
-                  value={password}
-                  onChange={(event) => setPassword(event.target.value)}
-                  placeholder="Confirmez Nouveau Mot de Passe"
-                  iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
-                />
-              </Form.Item>
-            </div>
-          </div>
+                  ]}>
+                  <Input value={firstName} onChange={(event) => setFirstName(event.target.value)} placeholder="Prénom" />
+                </Form.Item>
+                <Form.Item
+                  name="last_name"
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Renseignez votre nom de famille'
+                    }
+                  ]}>
+                  <Input value={lastName} onChange={(event) => setLastName(event.target.value)} placeholder="Nom" />
+                </Form.Item>
 
-          <div className="form__control">
-            <div className="form__button">
-              <Button
-                className="btn"
-                type="primary"
-                block
-                htmlType="submit"
-                disabled={
-                  !firstName ||
-                  !name ||
-                  !mail ||
-                  !phone ||
-                  !streetNumber ||
-                  !streetName ||
-                  !zipCode ||
-                  !cityName ||
-                  !country ||
-                  !password
-                }>
-                Valider
-              </Button>
+                <Form.Item name="email">
+                  <Input disabled value={mail} onChange={(event) => setMail(event.target.value)} placeholder="Adresse Mail" />
+                </Form.Item>
+              </div>
             </div>
-          </div>
-        </Form>
+
+            <div className="form__control">
+              <div className="form__input">
+                <Form.Item name="password">
+                  <Input.Password
+                    value={password}
+                    onChange={(event) => setPassword(event.target.value)}
+                    placeholder="Nouveau Mot de Passe"
+                    iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+                  />
+                </Form.Item>
+                <Form.Item
+                  name="new_password"
+                  dependencies={['password']}
+                  rules={[
+                    ({ getFieldValue }) => ({
+                      validator(_, value) {
+                        if (!value || getFieldValue('password') === value) {
+                          return Promise.resolve();
+                        }
+
+                        return Promise.reject(new Error('Les deux mots de passe doivent être identiques'));
+                      }
+                    })
+                  ]}>
+                  <Input.Password
+                    value={password}
+                    onChange={(event) => setPassword(event.target.value)}
+                    placeholder="Confirmez Nouveau Mot de Passe"
+                    iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+                  />
+                </Form.Item>
+              </div>
+            </div>
+
+            <div className="form__control">
+              <div className="form__button flex justify-center">
+                <Button
+                  loading={isLoadingUser}
+                  className="btn"
+                  type="primary"
+                  htmlType="submit"
+                  disabled={!firstName || !lastName}>
+                  Valider
+                </Button>
+              </div>
+            </div>
+          </Form>
+        )}
       </div>
     </div>
   );

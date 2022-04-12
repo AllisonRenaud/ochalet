@@ -1,28 +1,35 @@
 import '../Dashboard.scss';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'antd';
-import { useState } from 'react';
-import ListOffers from '../../../components/ListOffers/ListOffers';
+import { useEffect, useState } from 'react';
 import UpdateProfile from '../../../components/UpdateProfile/UpdateProfile';
+import ListBookings from '../../../components/ListBookings/ListBookings';
+import { getBookingsClientAction, getBookingsSellerAction } from '../../../store/actions/bookingActions';
+import DashboardSidebar from '../../../components/DashboardSidebar/DashboardSidebar';
 
 const DashboardUser = () => {
-  const [selectedTab, setSelectedTab] = useState('offers');
+  const dispatch = useDispatch();
+
+  const role = useSelector((state) => state.user?.profile?.role);
+
+  useEffect(() => {
+    dispatch(getBookingsClientAction());
+  }, []);
+
+  useEffect(() => {
+    if (role === 'seller') {
+      dispatch(getBookingsSellerAction());
+    }
+
+    if (role === 'client') {
+      dispatch(getBookingsClientAction());
+    }
+  }, []);
 
   return (
     <div className="container flex">
-      <div className="dashboard__sidebar flex flex-col w-col-30">
-        <div className="sidebar-item">
-          <Button className="btn" type="primary" block size="small" htmlType="button" onClick={() => setSelectedTab('profile')}>
-            Mon profil
-          </Button>
-        </div>
-        <div className="sidebar-item">
-          <Button className="btn" type="primary" block size="small" htmlType="button" onClick={() => setSelectedTab('offers')}>
-            Mes réservations
-          </Button>
-        </div>
-      </div>
-      {selectedTab === 'profile' && <UpdateProfile />}
-      {selectedTab === 'offers' && <ListOffers />}
+      <DashboardSidebar />
+      <ListBookings />
     </div>
   );
 };

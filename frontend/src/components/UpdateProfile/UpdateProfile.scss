@@ -11,9 +11,11 @@
     padding: 32px;
   }
 
-  &__title {
-    font-size: $font-xxl;
-    font-weight: 600;
-    margin-bottom: 56px;
+  &__form {
+    margin: 24px 0;
+  }
+
+  &__alert {
+    margin: 24px 0 ;
   }
 }

@@ -1,12 +1,16 @@
 import './Register.scss';
 import { useState } from 'react/cjs/react.development';
 import { Button, Input, Form, Radio } from 'antd';
+import { useDispatch } from 'react-redux';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import Logo from '../../components/Logo/Logo';
 import RegisterImage from '../../components/RegisterImage/RegisterImage';
+import { registerAction } from '../../store/actions/userActions';
 
 const Register = () => {
+  const dispatch = useDispatch();
+
   const [role, setRole] = useState('');
   const [firstName, setFirstName] = useState('');
   const [name, setName] = useState('');
@@ -17,7 +21,14 @@ const Register = () => {
   // TODO: Function for get all useState if all is a string with 1 or plus letters pass true
 
   const onSubmitHandler = (values) => {
-    console.log(values);
+    const newValues = {
+      first_name: values.first_name,
+      last_name: values.last_name,
+      email: values.email,
+      password: values.password,
+      role: values.role
+    };
+    dispatch(registerAction(newValues));
   };
 
   return (
@@ -44,7 +55,7 @@ const Register = () => {
                     }
                   ]}>
                   <Radio.Group buttonStyle="solid">
-                    <Radio.Button value="user">Vacancier</Radio.Button>
+                    <Radio.Button value="client">Vacancier</Radio.Button>
                     <Radio.Button value="seller">Propriétaire</Radio.Button>
                   </Radio.Group>
                 </Form.Item>
@@ -54,7 +65,7 @@ const Register = () => {
             <div className="form__control">
               <div className="form__input">
                 <Form.Item
-                  name="first name"
+                  name="first_name"
                   rules={[
                     {
                       required: true,
@@ -69,7 +80,7 @@ const Register = () => {
             <div className="form__control">
               <div className="form__input">
                 <Form.Item
-                  name="name"
+                  name="last_name"
                   rules={[
                     {
                       required: true,
@@ -119,7 +130,7 @@ const Register = () => {
                   />
                 </Form.Item>
                 <Form.Item
-                  name="confirm password"
+                  name="confirm_password"
                   dependencies={['password']}
                   rules={[
                     {

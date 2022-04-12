@@ -26,6 +26,9 @@ module.exports = {
       }
     ],
     'no-unused-vars': 'off',
+    'import/no-extraneous-dependencies': 'off',
+    'consistent-return': 'off',
+    'no-param-reassign': 'off',
     'react/no-unknown-property': [1, { ignore: ['strokeWidth', 'strokeLinecap', 'strokeLinejoin'] }]
   }
 };

@@ -7,13 +7,20 @@ button {
 
 .ant-btn {
   border-radius: $border-radius-50 !important;
+
+  
   &.ant-btn-primary {
     border-color: $color-green-500 !important;
     background: $color-green-500 !important;
     color: $color-white !important;
     &:hover, &:active, &:focus {
       border-color: $color-green-100 !important;
-    background: $color-green-100 !important;
+      background: $color-green-100 !important;
+    }
+    &[disabled] {
+      background-color: $color-gray-300 !important;
+      border-color: $color-gray-300 !important;
+      color: $color-green-500 !important;
     }
   }
 }

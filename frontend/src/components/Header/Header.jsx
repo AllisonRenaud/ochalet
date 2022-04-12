@@ -1,13 +1,31 @@
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { logoutAction } from '../../store/actions/authActions';
+import { getProfileAction } from '../../store/actions/userActions';
 import Logo from '../Logo/Logo';
 import './Header.scss';
 
 const Header = ({ isTransparent, isWhite }) => {
-  const user = {
-    role: 'seller',
-    isConected: true
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const isConnected = useSelector((state) => state.auth.isConnected);
+  const role = useSelector((state) => state.user?.profile?.role);
+
+  const onLogoutHandler = () => {
+    dispatch(logoutAction());
+    navigate('/');
   };
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken');
+
+    if (accessToken) {
+      dispatch(getProfileAction());
+    }
+  }, []);
 
   return (
     <header className={`header ${isTransparent ? 'header--transparent' : ''} flex items-center justify-between`}>
@@ -17,30 +35,30 @@ const Header = ({ isTransparent, isWhite }) => {
         </Link>
       </div>
       <div className="header__menu flex flex-row">
-        {user.isConected && (
+        {isConnected && role && (
           <>
-            {user.role === 'user' && (
+            {role === 'client' && (
               <div className="header__dashboard-link">
-                <Link to="/dashboard/user">Tableau de bord</Link>
+                <Link to="/dashboard/bookings">Tableau de bord</Link>
               </div>
             )}
-            {user.role === 'seller' && (
+            {role === 'seller' && (
               <div className="header__dashboard-link">
-                <Link to="/dashboard/seller">Tableau de bord</Link>
+                <Link to="/dashboard/bookings">Tableau de bord</Link>
               </div>
             )}
-            {user.role === 'admin' && (
+            {role === 'admin' && (
               <div className="header__dashboard-link">
-                <Link to="/dashboard/admin">Tableau de bord</Link>
+                <Link to="/dashboard/users">Tableau de bord</Link>
               </div>
             )}
-            <div className="header__dashboard-link">
-              <Link to="/">Se déconnecter</Link>
-            </div>
+            <button type="button" onClick={onLogoutHandler}>
+              <div className="header__dashboard-link">Se déconnecter</div>
+            </button>
           </>
         )}
 
-        {!user.isConected && (
+        {!isConnected && (
           <>
             <div className="header__dashboard-link">
               <Link to="/login/">Se connecter</Link>

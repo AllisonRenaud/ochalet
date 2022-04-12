@@ -1,17 +1,30 @@
-import './Login.scss';
-import { Button, Input, Form } from 'antd';
+import { Button, Input, Form, Alert } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
-import { useState } from 'react/cjs/react.development';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Logo from '../../components/Logo/Logo';
+import { loginAction } from '../../store/actions/authActions';
 import LoginImage from '../../components/LoginImage/LoginImage';
 
+import './Login.scss';
+
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const isConnected = useSelector((store) => store.auth.isConnected);
+  const authError = useSelector((store) => store.auth.error);
+
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
 
   const onSubmitHandler = (values) => {
-    console.log(values);
+    dispatch(loginAction(values));
+
+    if (isConnected) {
+      navigate('/');
+    }
   };
 
   return (
@@ -25,6 +38,16 @@ const Login = () => {
             <div className="login__logo flex justify-center">
               <Logo height={60} width={200} />
             </div>
+
+            {authError && (
+              <Alert
+                message="Echec de la connexion"
+                description="Votre email et/ou votre mot de passe sont incorrectes"
+                type="error"
+                showIcon
+              />
+            )}
+
             <div className="login__title">Se connecter</div>
             <div className="form__control">
               <div className="form__input">
