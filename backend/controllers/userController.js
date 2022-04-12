@@ -13,7 +13,7 @@ const userController = {
       });
 
       if (userFound) {
-        return response.status(403).send("User already registered");
+        return response.status(403).json({ error: "User already registered" });
       }
 
       const passwordHashed = await bcrypt.hash(password, 10);
@@ -21,41 +21,15 @@ const userController = {
         data: {
           ...request.body,
           password: passwordHashed,
-          role: "client",
         },
       });
+      // TODO: Login after user creation
 
       delete user.password;
       response.status(200).json(user);
     } catch (error) {
-      response.status(500).send(error.message);
-    }
-  },
-  createSeller: async (request, response) => {
-    try {
-      const email = request.body.email;
-      const password = request.body.password;
-
-      const userFound = await prisma.user.findUnique({
-        where: { email: email },
-      });
-
-      if (userFound) {
-        return response.status(403).send("User already registered");
-      }
-
-      const passwordHashed = await bcrypt.hash(password, 10);
-      const user = await prisma.user.create({
-        data: {
-          ...request.body,
-          password: passwordHashed,
-          role: "seller",
-        },
-      });
-      delete user.password;
-      response.status(200).json(user);
-    } catch (error) {
-      response.status(500).send(error.message);
+      console.log(error);
+      response.status(500).json({ error });
     }
   },
   getUserProfile: async (request, response) => {

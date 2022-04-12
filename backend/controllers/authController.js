@@ -8,14 +8,23 @@ const authController = {
     const email = request.body.email;
     const password = request.body.password;
     const user = await prisma.user.findUnique({ where: { email: email } });
-    const verifyPassword = await bcrypt.compare(password, user.password);
 
-    if (!verifyPassword) {
-      return response.status(404).send("Auth error");
+    if (!user) {
+      return response
+        .status(403)
+        .send({
+          message: "Votre email et/ou votre mot de passe sont incorrectes",
+        });
+    } else {
+      const verifyPassword = await bcrypt.compare(password, user.password);
+
+      if (!verifyPassword) {
+        return response.status(404).send("Auth error");
+      }
+
+      const accessToken = generateAccessToken(user.id);
+      response.status(200).json({ accessToken });
     }
-
-    const accessToken = generateAccessToken(user.id);
-    response.status(200).json({ accessToken });
   },
 };
 

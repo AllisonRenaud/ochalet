@@ -23,5 +23,9 @@ bookingRouter.get(
   [authMiddleware, rolesMiddleware(["seller"])],
   bookingController.getBookingsToValidate
 );
+bookingRouter.get(
+  "/bookings/dates-disabled/offer/:offerId/",
+  bookingController.getActiveBookings
+);
 
 module.exports = bookingRouter;

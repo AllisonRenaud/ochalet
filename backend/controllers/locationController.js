@@ -4,7 +4,9 @@ const prisma = new PrismaClient();
 const locationController = {
   findAll: async (request, response) => {
     try {
-      const locations = await prisma.location.findMany();
+      const locations = await prisma.location.findMany({
+        orderBy: { name: "asc" },
+      });
       response.status(200).json(locations);
     } catch (error) {
       response.status(500).send(error.message);

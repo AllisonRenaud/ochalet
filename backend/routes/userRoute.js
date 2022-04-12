@@ -6,17 +6,16 @@ const rolesMiddleware = require("../middlewares/rolesMiddleware");
 const userRouter = require("express").Router();
 
 userRouter.route("/users/create-user").post(userController.createUser);
-userRouter.route("/users/create-seller").post(userController.createSeller);
 
 userRouter.get(
   "/users/profile/",
-  [authMiddleware, rolesMiddleware(["seller", "client"])],
+  [authMiddleware],
   userController.getUserProfile
 );
 
 userRouter.patch(
   "/users/profile/",
-  [authMiddleware, rolesMiddleware(["seller", "client"])],
+  [authMiddleware, rolesMiddleware(["seller", "client", "admin"])],
   userController.updateUserProfile
 );
 

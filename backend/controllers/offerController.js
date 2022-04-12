@@ -1,6 +1,14 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
+const cloudinary = require("cloudinary").v2;
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
 const offerController = {
   findAll: async (request, response) => {
     try {
@@ -14,6 +22,9 @@ const offerController = {
     try {
       const offer = await prisma.offer.findUnique({
         where: { id: parseInt(request.params.offerId) },
+        include: {
+          location: true,
+        },
       });
       response.status(200).json(offer);
     } catch (error) {
@@ -22,16 +33,51 @@ const offerController = {
   },
   createOffer: async (request, response) => {
     try {
+      const image_default = await cloudinary.uploader.upload(
+        request.files.image_default.filepath
+      );
+
+      let images = [];
+      for (let index = 0; index < 5; index++) {
+        const newImage = await cloudinary.uploader.upload(
+          request.files[`image_${index}`].filepath
+        );
+
+        images.push(newImage.url);
+      }
+
+      const media = {
+        image_default: image_default.url,
+        images: images,
+      };
+
       const newOffer = await prisma.offer.create({
         data: {
           ...request.body,
+          street_number: parseInt(request.body.street_number),
+          zip_code: parseInt(request.body.zip_code),
+          people_capacity: parseInt(request.body.people_capacity),
+          rooms: parseInt(request.body.rooms),
+          bathrooms: parseInt(request.body.bathrooms),
+          tv: parseInt(request.body.tv),
+          price: parseInt(request.body.price),
+          locationId: parseInt(request.body.locationId),
+          wifi: request.body.wifi === "true",
+          pets: request.body.pets === "true",
+          cleaning: request.body.cleaning === "true",
+          breakfast: request.body.breakfast === "true",
           status: "inactive",
           userId: request.user.id,
+          media: media,
         },
       });
       response.status(200).json(newOffer);
     } catch (error) {
-      response.status(500).send(error.message);
+      console.log(
+        "🚀 -> file: offerController.js -> line 66 -> createOffer: -> error",
+        error
+      );
+      response.status(500).send(error);
     }
   },
   getSellerOffers: async (request, response) => {

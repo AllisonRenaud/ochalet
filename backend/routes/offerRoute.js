@@ -1,6 +1,7 @@
 const offerController = require("../controllers/offerController");
 const authMiddleware = require("../middlewares/authMiddleware");
 const rolesMiddleware = require("../middlewares/rolesMiddleware");
+const uploadFilesMiddleware = require("../middlewares/uploadFilesMiddleware");
 
 const offerRouter = require("express").Router();
 
@@ -15,7 +16,9 @@ offerRouter.get(
 
 offerRouter.post(
   "/offers/",
-  [authMiddleware, rolesMiddleware(["seller"])],
+  authMiddleware,
+  rolesMiddleware(["seller"]),
+  uploadFilesMiddleware,
   offerController.createOffer
 );
 
