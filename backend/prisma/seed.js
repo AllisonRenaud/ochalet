@@ -38,48 +38,69 @@ async function main() {
     },
   });
 
-  const location = await prisma.location.upsert({
+  const location1 = await prisma.location.upsert({
     where: { id: 1 },
     update: {},
     create: {
-      name: "Location 1",
+      name: "Alpes du Nord",
       image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Alpen_01.JPG/1280px-Alpen_01.JPG",
+        "https://res.cloudinary.com/dbbz6f1kg/image/upload/v1649668290/alpes-du-nord_rypbbo.jpg",
       status: "active",
     },
   });
 
-  const offer = await prisma.offer.upsert({
-    where: { id: 1 },
+  const location2 = await prisma.location.upsert({
+    where: { id: 2 },
     update: {},
     create: {
-      title: "Offer 1",
-      description: "Description",
-      zip_code: 13100,
-      city_name: "Paris",
-      country: "France",
-      street_name: "Rue de mexique",
-      street_number: 23,
-      price_ht: 1000,
-      tax: 20,
-      price_ttc: 1200,
-      images: {},
-      status: "inactive",
-      people_capacity: 12,
-      rooms: 6,
-      bathrooms: 3,
-      pets: true,
-      tv: 3,
-      wifi: true,
-      cleaning: true,
-      breakfast: false,
-      notes: "RAS",
-      location: {
-        connect: { id: 1 },
-      },
-      user: {
-        connect: { id: 5 },
-      },
+      name: "Alpes du Sud",
+      image:
+        "https://res.cloudinary.com/dbbz6f1kg/image/upload/v1649668290/alpes-du-sud_vhi04j.jpg",
+      status: "active",
+    },
+  });
+
+  const location3 = await prisma.location.upsert({
+    where: { id: 3 },
+    update: {},
+    create: {
+      name: "Jura",
+      image:
+        "https://res.cloudinary.com/dbbz6f1kg/image/upload/v1649668290/jura_dnzgip.jpg",
+      status: "active",
+    },
+  });
+
+  const location4 = await prisma.location.upsert({
+    where: { id: 4 },
+    update: {},
+    create: {
+      name: "Massif Central",
+      image:
+        "https://res.cloudinary.com/dbbz6f1kg/image/upload/v1649668290/massif-central_gjzs7y.jpg",
+      status: "active",
+    },
+  });
+
+  const location5 = await prisma.location.upsert({
+    where: { id: 5 },
+    update: {},
+    create: {
+      name: "Pyrénées",
+      image:
+        "https://res.cloudinary.com/dbbz6f1kg/image/upload/v1649668290/pyrenees_iiik20.jpg",
+      status: "active",
+    },
+  });
+
+  const location6 = await prisma.location.upsert({
+    where: { id: 6 },
+    update: {},
+    create: {
+      name: "Vosges",
+      image:
+        "https://res.cloudinary.com/dbbz6f1kg/image/upload/v1649668290/vosges_y9mh12.jpg",
+      status: "active",
     },
   });
 }

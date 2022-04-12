@@ -11,16 +11,16 @@ datasource postgres {
 }
 
 model User {
-  id            Int    @id @default(autoincrement())
+  id            Int     @id @default(autoincrement())
   first_name    String
   last_name     String
-  email         String @unique
-  phone         String
-  zip_code      Int
-  city_name     String
-  country       String
-  street_name   String
-  street_number Int
+  email         String  @unique
+  phone         String?
+  zip_code      Int?
+  city_name     String?
+  country       String?
+  street_name   String?
+  street_number Int?
   password      String
   role          String
 
@@ -34,16 +34,15 @@ model User {
 model Offer {
   id              Int     @id @default(autoincrement())
   title           String
+  complement      String
   description     String
   zip_code        Int
   city_name       String
   country         String
   street_name     String
   street_number   Int
-  price_ht        Int
-  tax             Int
-  price_ttc       Int
-  images          Json
+  price           Int
+  media           Json
   status          String
   people_capacity Int
   rooms           Int
@@ -53,7 +52,6 @@ model Offer {
   wifi            Boolean
   cleaning        Boolean
   breakfast       Boolean
-  notes           String
 
   // Relations
   user   User? @relation(fields: [userId], references: [id])
