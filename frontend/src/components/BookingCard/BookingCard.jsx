@@ -2,12 +2,10 @@ import './BookingCard.scss';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import 'dayjs/locale/fr';
-import IconUser from '../icons/IconUser/IconUser';
 
 dayjs.locale('fr');
 
 const BookingCard = ({ booking }) => {
-  console.log('🚀 -> file: BookingCard.jsx -> line 10 -> BookingCard -> booking', booking);
   const generateStatus = (status) => {
     const listStatus = {
       rejected: 'Réservation refusée',
@@ -21,7 +19,7 @@ const BookingCard = ({ booking }) => {
   return (
     <div className="booking-card">
       <div className="booking-card__image flex items-center justify-center">
-        <img src={booking.offer.media?.image_default} alt={booking.offer.title} />
+        {booking.offer.media && <img src={booking.offer.media?.image_default} alt={booking.offer.title} />}
       </div>
       <div className="booking-card__container flex flex-col items-center">
         <div className="booking-card__name">
