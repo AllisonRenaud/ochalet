@@ -1,4 +1,12 @@
-import { DELETE_USER, GET_PROFILE, GET_USERS, LOADING_USER, REGISTER, UPDATE_PROFILE } from '../actions/userActions';
+import {
+  CLEAN_PROFILE,
+  DELETE_USER,
+  GET_PROFILE,
+  GET_USERS,
+  LOADING_USER,
+  REGISTER,
+  UPDATE_PROFILE
+} from '../actions/userActions';
 
 const initialState = {
   profile: null,
@@ -8,6 +16,11 @@ const initialState = {
 
 const userReducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case CLEAN_PROFILE:
+      return {
+        ...state,
+        profile: null
+      };
     case DELETE_USER:
       return {
         ...state
