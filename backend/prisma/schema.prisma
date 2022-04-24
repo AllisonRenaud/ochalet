@@ -93,3 +93,7 @@ model Booking {
 
   @@map("bookings")
 }
+
+generator dbml {
+  provider = "prisma-dbml-generator"
+}
