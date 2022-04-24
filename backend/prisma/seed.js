@@ -40,66 +40,96 @@ async function main() {
 
   const location1 = await prisma.location.upsert({
     where: { id: 1 },
-    update: {},
+    update: {
+      name: "Alpes du Nord",
+      image:
+        "https://res.cloudinary.com/dbbz6f1kg/image/upload/c_scale,w_360/v1649668290/alpes-du-nord_rypbbo.jpg",
+      status: "active",
+    },
     create: {
       name: "Alpes du Nord",
       image:
-        "https://res.cloudinary.com/dbbz6f1kg/image/upload/v1649668290/alpes-du-nord_rypbbo.jpg",
+        "https://res.cloudinary.com/dbbz6f1kg/image/upload/c_scale,w_360/v1649668290/alpes-du-nord_rypbbo.jpg",
       status: "active",
     },
   });
 
   const location2 = await prisma.location.upsert({
     where: { id: 2 },
-    update: {},
+    update: {
+      name: "Alpes du Sud",
+      image:
+        "https://res.cloudinary.com/dbbz6f1kg/image/upload/c_scale,w_360/v1649668290/alpes-du-sud_vhi04j.jpg",
+      status: "active",
+    },
     create: {
       name: "Alpes du Sud",
       image:
-        "https://res.cloudinary.com/dbbz6f1kg/image/upload/v1649668290/alpes-du-sud_vhi04j.jpg",
+        "https://res.cloudinary.com/dbbz6f1kg/image/upload/c_scale,w_360/v1649668290/alpes-du-sud_vhi04j.jpg",
       status: "active",
     },
   });
 
   const location3 = await prisma.location.upsert({
     where: { id: 3 },
-    update: {},
+    update: {
+      name: "Jura",
+      image:
+        "https://res.cloudinary.com/dbbz6f1kg/image/upload/c_scale,w_360/v1649668290/jura_dnzgip.jpg",
+      status: "active",
+    },
     create: {
       name: "Jura",
       image:
-        "https://res.cloudinary.com/dbbz6f1kg/image/upload/v1649668290/jura_dnzgip.jpg",
+        "https://res.cloudinary.com/dbbz6f1kg/image/upload/c_scale,w_360/v1649668290/jura_dnzgip.jpg",
       status: "active",
     },
   });
 
   const location4 = await prisma.location.upsert({
     where: { id: 4 },
-    update: {},
+    update: {
+      name: "Massif Central",
+      image:
+        "https://res.cloudinary.com/dbbz6f1kg/image/upload/c_scale,w_360/v1649668290/massif-central_gjzs7y.jpg",
+      status: "active",
+    },
     create: {
       name: "Massif Central",
       image:
-        "https://res.cloudinary.com/dbbz6f1kg/image/upload/v1649668290/massif-central_gjzs7y.jpg",
+        "https://res.cloudinary.com/dbbz6f1kg/image/upload/c_scale,w_360/v1649668290/massif-central_gjzs7y.jpg",
       status: "active",
     },
   });
 
   const location5 = await prisma.location.upsert({
     where: { id: 5 },
-    update: {},
+    update: {
+      name: "Pyrénées",
+      image:
+        "https://res.cloudinary.com/dbbz6f1kg/image/upload/c_scale,w_360/v1649668290/pyrenees_iiik20.jpg",
+      status: "active",
+    },
     create: {
       name: "Pyrénées",
       image:
-        "https://res.cloudinary.com/dbbz6f1kg/image/upload/v1649668290/pyrenees_iiik20.jpg",
+        "https://res.cloudinary.com/dbbz6f1kg/image/upload/c_scale,w_360/v1649668290/pyrenees_iiik20.jpg",
       status: "active",
     },
   });
 
   const location6 = await prisma.location.upsert({
     where: { id: 6 },
-    update: {},
+    update: {
+      name: "Vosges",
+      image:
+        "https://res.cloudinary.com/dbbz6f1kg/image/upload/c_scale,w_360/v1649668290/vosges_y9mh12.jpg",
+      status: "active",
+    },
     create: {
       name: "Vosges",
       image:
-        "https://res.cloudinary.com/dbbz6f1kg/image/upload/v1649668290/vosges_y9mh12.jpg",
+        "https://res.cloudinary.com/dbbz6f1kg/image/upload/c_scale,w_360/v1649668290/vosges_y9mh12.jpg",
       status: "active",
     },
   });
