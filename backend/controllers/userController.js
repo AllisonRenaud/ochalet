@@ -23,7 +23,6 @@ const userController = {
           password: passwordHashed,
         },
       });
-      // TODO: Login after user creation
 
       delete user.password;
       response.status(200).json(user);

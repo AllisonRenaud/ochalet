@@ -2,7 +2,7 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
-// get config vars
+
 dotenv.config();
 
 module.exports = async (request, response, next) => {
