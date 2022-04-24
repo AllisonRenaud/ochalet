@@ -86,10 +86,14 @@ export const getOfferSelectedAction = (payload) => async (dispatch) => {
 };
 
 export const UPDATE_OFFER = 'UPDATE_OFFER';
-export const updateOfferAction = (payload) => async (dispatch) => {
+export const updateOfferAction = (payload, offerId) => async (dispatch) => {
   try {
     dispatch(loadingOfferAction(true));
-    const response = await axiosInstance.patch(`/offers/${payload.offerId}`, payload, {});
+    const response = await axiosInstance.patch(`/offers/${offerId}`, payload, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
 
     if (response.status === 200 && response.data) {
       dispatch(loadingOfferAction(false));
@@ -139,3 +143,8 @@ export const deleteOfferAction = (payload) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const CLEAN_OFFER_SELECTED = 'CLEAN_OFFER_SELECTED';
+export const cleanOfferSelectedAction = () => ({
+  type: CLEAN_OFFER_SELECTED
+});
