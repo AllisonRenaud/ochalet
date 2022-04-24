@@ -1,0 +1,40 @@
+version: "3"
+
+services:
+  postgres:
+    image: "postgres:latest"
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: ochalet
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    networks:
+      - postgres
+
+  pgadmin:
+    image: dpage/pgadmin4:4.21
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "arenaud"
+      PGADMIN_DEFAULT_PASSWORD: "root"
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    ports:
+      - 5050:80
+    logging:
+      driver: none
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    networks:
+      - postgres
+
+networks:
+  postgres:
+    driver: bridge
+
+volumes:
+  pgadmin:
+  pg_data:

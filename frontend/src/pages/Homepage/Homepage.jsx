@@ -24,7 +24,7 @@ const Homepage = () => {
       image: 'https://res.cloudinary.com/dbbz6f1kg/image/upload/c_scale,w_360/v1649668290/massif-central_gjzs7y.jpg'
     },
     {
-      id: 4,
+      id: 5,
       name: 'Pyrénées',
       image: 'https://res.cloudinary.com/dbbz6f1kg/image/upload/c_scale,w_360/v1649668290/pyrenees_iiik20.jpg'
     }
