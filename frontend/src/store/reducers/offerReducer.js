@@ -7,7 +7,8 @@ import {
   UPDATE_OFFER,
   SET_DATE_RANGE_SELECTED,
   DELETE_OFFER,
-  GET_DISABLED_DATES_OFFER
+  GET_DISABLED_DATES_OFFER,
+  CLEAN_OFFER_SELECTED
 } from '../actions/offerActions';
 
 const initialState = {
@@ -21,6 +22,11 @@ const initialState = {
 
 const offerReducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case CLEAN_OFFER_SELECTED:
+      return {
+        ...state,
+        offerSelected: null
+      };
     case GET_DISABLED_DATES_OFFER:
       return {
         ...state,
