@@ -46,6 +46,10 @@
   width: 20%;
 }
 
+.w-col-25 {
+  width: 25%;
+}
+
 .w-col-30 {
   width: 30%;
 }
@@ -80,4 +84,32 @@
 
 .w-col-100 {
   width: 100%;
+}
+
+
+@media (max-width: 768px) {
+  .w-col-25 {
+    width: 100%;
+  }
+
+  .w-col-30 {
+    width: 100%;
+  }
+
+
+  .w-col-33 {
+    width: 100%;
+  }
+
+  .w-col-40 {
+    width: 100%;
+  }
+
+  .w-col-60 {
+    width: 100%;
+  }
+
+  .w-col-70 {
+    width: 100%;
+  }
 }

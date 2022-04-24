@@ -15,7 +15,7 @@ const ForgotPassword = () => {
     <div className="forgot-password flex">
       <div className="forgot-password__form w-col-50 flex justify-center items-center">
         <Form layout="vertical" className="form w-col-60" name="forgot-password" onFinish={onSubmitHandler} autoComplete="off">
-          <div className="login__logo flex justify-center">
+          <div className="forgot-password__logo flex justify-center">
             <Logo height={60} width={200} />
           </div>
           <div className="forgot-password__title">Mot de passe oublié?</div>

@@ -7,9 +7,11 @@ import IconBed from '../icons/IconBed/IconBed';
 const OfferCard = ({ offer }) => (
   <Link to={`/locations/${offer.locationId}/offers/${offer.id}`}>
     <div className="offer-card">
-      <div className="offer-card__image flex items-center justify-center">
-        <img src={offer.media.image_default} alt={offer.title} />
-      </div>
+      <div
+        className="offer-card__image flex items-center justify-center"
+        style={{ background: `url(${offer.media.image_default})` }}
+      />
+
       <div className="offer-card__container">
         <div className="offer-card__title">{offer.title}</div>
         <div className="offer-card__location">{offer.city_name}</div>

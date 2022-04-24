@@ -1,7 +1,7 @@
 import { Button, Input, Form, Alert } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Logo from '../../components/Logo/Logo';
 import { loginAction } from '../../store/actions/authActions';
@@ -21,11 +21,13 @@ const Login = () => {
 
   const onSubmitHandler = (values) => {
     dispatch(loginAction(values));
+  };
 
+  useEffect(() => {
     if (isConnected) {
       navigate('/');
     }
-  };
+  }, [isConnected]);
 
   return (
     <div className="login ">
@@ -93,9 +95,9 @@ const Login = () => {
                 </Form.Item>
               </div>
             </div>
-            <Link to="/forgot-password">
-              <div className="form__forgot-password flex justify-end">Mot de passe oublié?</div>
-            </Link>
+            <div className="form__forgot-password flex justify-end">
+              <Link to="/forgot-password">Mot de passe oublié?</Link>
+            </div>
             <div className="form__control ">
               <div className="form__button">
                 <Button className="btn" type="primary" block htmlType="submit" disabled={!mail || !password}>

@@ -5,8 +5,12 @@ import './Dashboard.scss';
 
 const DashboardUsers = () => (
   <div className="container flex">
-    <DashboardSidebar />
-    <ListUsers />
+    <div className="w-col-30">
+      <DashboardSidebar />
+    </div>
+    <div className="w-col-70">
+      <ListUsers />
+    </div>
   </div>
 );
 

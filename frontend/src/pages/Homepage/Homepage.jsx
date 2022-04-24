@@ -11,20 +11,22 @@ const Homepage = () => {
     {
       id: 1,
       name: 'Alpes du Sud',
-      image:
-        'https://images.unsplash.com/photo-1454496522488-7a8e488e8606?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=80'
+      image: 'https://res.cloudinary.com/dbbz6f1kg/image/upload/c_scale,w_360/v1649668290/alpes-du-sud_vhi04j.jpg'
     },
     {
       id: 2,
       name: 'Jura',
-      image:
-        'https://images.unsplash.com/photo-1549880181-56a44cf4a9a5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=80'
+      image: 'https://res.cloudinary.com/dbbz6f1kg/image/upload/c_scale,w_360/v1649668290/jura_dnzgip.jpg'
     },
     {
       id: 3,
       name: 'Massif Central',
-      image:
-        'https://images.unsplash.com/photo-1480497490787-505ec076689f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=80'
+      image: 'https://res.cloudinary.com/dbbz6f1kg/image/upload/c_scale,w_360/v1649668290/massif-central_gjzs7y.jpg'
+    },
+    {
+      id: 4,
+      name: 'Pyrénées',
+      image: 'https://res.cloudinary.com/dbbz6f1kg/image/upload/c_scale,w_360/v1649668290/pyrenees_iiik20.jpg'
     }
   ];
 
@@ -43,9 +45,11 @@ const Homepage = () => {
       </div>
       <div className="homepage-locations">
         <div className="homepage-locations__title ">Des idées pour votre prochaine escapade</div>
-        <div className="homepage-locations__card flex justify-center">
+        <div className=" flex flex-wrap justify-center">
           {locations.map((location) => (
-            <LocationCard location={location} key={location.id} />
+            <div className="homepage-locations__card w-col-25" key={location.id}>
+              <LocationCard location={location} key={location.id} />
+            </div>
           ))}
         </div>
       </div>

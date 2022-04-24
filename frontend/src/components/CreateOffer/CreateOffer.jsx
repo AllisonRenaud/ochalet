@@ -69,13 +69,13 @@ const CreateOffer = () => {
 
   useEffect(() => {
     if (isSending && !isLoadingOffer) {
-      navigate('/dashboard/seller');
-      window.location.reload(false);
+      navigate('/dashboard/offers');
+      // window.location.reload(false);
     }
   }, [isLoadingOffer, isSending]);
 
   return (
-    <div className="create-offer__container w-col-70">
+    <div className="create-offer__container">
       <h2 className="text-green-900">Créer une annonce</h2>
 
       <div className="create-offer__form flex justify-center">
@@ -326,7 +326,13 @@ const CreateOffer = () => {
 
           <div className="form__control">
             <div className="form__button flex justify-center">
-              <Button loading={isLoadingOffer} className="btn" type="primary" size="large" htmlType="submit">
+              <Button
+                loading={isLoadingOffer}
+                className="btn"
+                type="primary"
+                size="large"
+                htmlType="submit"
+                disabled={images.length < 5 || imageDefault < 1}>
                 Créer une annonce
               </Button>
             </div>

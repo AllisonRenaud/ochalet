@@ -19,7 +19,7 @@ const ListUsers = () => {
   }, []);
 
   return (
-    <div className="users__container w-col-70">
+    <div className="users__container">
       <h2 className="text-green-900">Les utilisateurs</h2>
       <div className="users__cards flex flex-wrap">
         {users.map((user) => (

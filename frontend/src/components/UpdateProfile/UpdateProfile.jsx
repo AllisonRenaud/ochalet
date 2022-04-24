@@ -14,21 +14,9 @@ const UpdateProfile = () => {
 
   const isLoadingUser = useSelector((state) => state.user.isLoading);
 
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [mail, setMail] = useState('');
-  const [password, setPassword] = useState('');
-
   useEffect(() => {
     dispatch(getProfileAction());
   }, []);
-
-  useEffect(() => {
-    setFirstName(userProfile.first_name);
-    setLastName(userProfile.last_name);
-    setMail(userProfile.mail);
-    setPassword(userProfile.password);
-  }, [userProfile]);
 
   const onSubmitHandler = (values) => {
     delete values.new_password;
@@ -44,7 +32,7 @@ const UpdateProfile = () => {
   }, [isLoadingUser, isSending]);
 
   return (
-    <div className="profile__container w-col-70">
+    <div className="profile__container">
       <h2 className="text-green-900">Mes informations</h2>
 
       {showMessage && (
@@ -76,7 +64,7 @@ const UpdateProfile = () => {
                       message: 'Renseignez votre prénom'
                     }
                   ]}>
-                  <Input value={firstName} onChange={(event) => setFirstName(event.target.value)} placeholder="Prénom" />
+                  <Input placeholder="Prénom" />
                 </Form.Item>
                 <Form.Item
                   name="last_name"
@@ -86,11 +74,11 @@ const UpdateProfile = () => {
                       message: 'Renseignez votre nom de famille'
                     }
                   ]}>
-                  <Input value={lastName} onChange={(event) => setLastName(event.target.value)} placeholder="Nom" />
+                  <Input placeholder="Nom" />
                 </Form.Item>
 
                 <Form.Item name="email">
-                  <Input disabled value={mail} onChange={(event) => setMail(event.target.value)} placeholder="Adresse Mail" />
+                  <Input disabled placeholder="Adresse Mail" />
                 </Form.Item>
               </div>
             </div>
@@ -99,8 +87,6 @@ const UpdateProfile = () => {
               <div className="form__input">
                 <Form.Item name="password">
                   <Input.Password
-                    value={password}
-                    onChange={(event) => setPassword(event.target.value)}
                     placeholder="Nouveau Mot de Passe"
                     iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                   />
@@ -120,8 +106,6 @@ const UpdateProfile = () => {
                     })
                   ]}>
                   <Input.Password
-                    value={password}
-                    onChange={(event) => setPassword(event.target.value)}
                     placeholder="Confirmez Nouveau Mot de Passe"
                     iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                   />
@@ -131,12 +115,7 @@ const UpdateProfile = () => {
 
             <div className="form__control">
               <div className="form__button flex justify-center">
-                <Button
-                  loading={isLoadingUser}
-                  className="btn"
-                  type="primary"
-                  htmlType="submit"
-                  disabled={!firstName || !lastName}>
+                <Button loading={isLoadingUser} className="btn" type="primary" htmlType="submit">
                   Valider
                 </Button>
               </div>

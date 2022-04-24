@@ -1,14 +1,12 @@
-@import "../../scss/variables";
+@import '../../scss/variables';
 
 .booking {
-
   &__container {
     margin: 32px;
     background-color: $color-white;
     border: 1px solid $color-gray-200;
     border-radius: $border-radius-8;
     padding: 32px;
-
   }
 
   &__card {
@@ -45,10 +43,20 @@
   &__description {
     margin: 0 8px;
   }
+}
 
-  &__button {
-    margin-top: 24px;
-    margin-right: 24px;
+@media (max-width: 768px) {
+  .booking {
+    &__confirmation {
+      display: block;
+    }
+
+    &__card {
+      padding: 8px;
+    }
+
+    &__detail {
+      margin: 8px 0;
+    }
   }
-
 }

@@ -15,11 +15,11 @@ const Locations = () => {
   }, []);
 
   return (
-    <div className="locations ">
-      <div className="locations__title">Les destinations</div>
-      <div className="locations__card flex justify-center">
+    <div className="locations">
+      <h1 className="locations__title">Les destinations</h1>
+      <div className="locations__list flex flex-wrap justify-center">
         {locations.map((location) => (
-          <div className="locations__card" key={location.id}>
+          <div className="locations__card w-col-33" key={location.id}>
             <LocationCard location={location} />
           </div>
         ))}

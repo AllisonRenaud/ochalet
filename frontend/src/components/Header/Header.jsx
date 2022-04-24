@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { logoutAction } from '../../store/actions/authActions';
-import { getProfileAction } from '../../store/actions/userActions';
+import { cleanProfileAction, getProfileAction } from '../../store/actions/userActions';
 import Logo from '../Logo/Logo';
 import './Header.scss';
 
@@ -16,6 +16,7 @@ const Header = ({ isTransparent, isWhite }) => {
 
   const onLogoutHandler = () => {
     dispatch(logoutAction());
+    dispatch(cleanProfileAction());
     navigate('/');
   };
 

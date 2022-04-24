@@ -25,3 +25,15 @@
   }
 }
 
+
+@media (max-width: 768px) {
+  .login {
+    &__image {
+      display: none;
+    }
+
+    &__form {
+      width: 100%;
+    }
+  }
+}

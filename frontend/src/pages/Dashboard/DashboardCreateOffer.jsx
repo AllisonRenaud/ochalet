@@ -10,8 +10,10 @@ const DashboardCreateOffer = () => {
 
   return (
     <div className="container flex">
-      <DashboardSidebar />
-      {offerId === 'create' ? <CreateOffer /> : <UpdateOffer />}
+      <div className="w-col-30">
+        <DashboardSidebar />
+      </div>
+      <div className="w-col-70">{offerId === 'create' ? <CreateOffer /> : <UpdateOffer />}</div>
     </div>
   );
 };

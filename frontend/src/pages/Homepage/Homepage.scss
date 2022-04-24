@@ -1,11 +1,10 @@
 @import "../../scss/variables";
 
 .homepage {
-
   .slider {
     height: 700px;
-   background-repeat: no-repeat;
-   background-position: 50% 80%;
+    background-repeat: no-repeat;
+    background-position: 50% 80%;
 
    &__info {
      padding: 24px;
@@ -25,6 +24,17 @@
     &__title {
       font-size: $font-xxl;
       font-weight: 500;
+    }
+  }
+}
+
+
+@media (max-width: 768px) {
+  .homepage {
+    .homepage-locations {
+      &__card {
+        width: 100%;
+      }
     }
   }
 }

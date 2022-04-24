@@ -22,8 +22,6 @@ const ListBookings = () => {
   };
 
   useEffect(() => {
-    console.log('usse');
-    console.log(role);
     if (role === 'seller') {
       dispatch(getBookingsSellerAction());
     }
@@ -34,12 +32,12 @@ const ListBookings = () => {
   }, [role]);
 
   return (
-    <div className="bookings__container w-col-70">
+    <div className="bookings__container">
       <h2 className="text-green-900">Les réservations</h2>
       {bookings.length > 0 ? (
         <div className="bookings__cards flex flex-wrap">
           {bookings.map((booking) => (
-            <div className="w-col-50" key={booking.id}>
+            <div className="w-col-33" key={booking.id}>
               <div className="bookings__card">
                 <BookingCard booking={booking} />
               </div>
@@ -66,7 +64,7 @@ const ListBookings = () => {
           ))}
         </div>
       ) : (
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center" style={{ height: 500 }}>
           <Empty description="Vous n'avez pas de réservation" />
         </div>
       )}

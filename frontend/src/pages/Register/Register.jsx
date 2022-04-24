@@ -1,24 +1,20 @@
 import './Register.scss';
 import { useState } from 'react/cjs/react.development';
 import { Button, Input, Form, Radio } from 'antd';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../../components/Logo/Logo';
 import RegisterImage from '../../components/RegisterImage/RegisterImage';
 import { registerAction } from '../../store/actions/userActions';
 
 const Register = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const [role, setRole] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [name, setName] = useState('');
-  const [mail, setMail] = useState('');
-  const [password, setPassword] = useState('');
-
-  // TODO: isFormValid
-  // TODO: Function for get all useState if all is a string with 1 or plus letters pass true
+  const token = localStorage.getItem('accessToken');
+  const isConnected = useSelector((state) => state.auth.isConnected);
 
   const onSubmitHandler = (values) => {
     const newValues = {
@@ -31,12 +27,18 @@ const Register = () => {
     dispatch(registerAction(newValues));
   };
 
+  useEffect(() => {
+    if (isConnected && token) {
+      navigate('/dashboard/bookings');
+    }
+  }, [isConnected, token]);
+
   return (
     <div className="register">
       <div className="register__container flex items-center">
         <div className="register__form w-col-50 flex justify-center">
           <Form layout="vertical" className="form w-col-60" name="register" onFinish={onSubmitHandler} autoComplete="off">
-            <div className="login__logo flex justify-center">
+            <div className="register__logo flex justify-center">
               <Logo height={60} width={200} />
             </div>
             <div className="register__title">S'inscrire</div>
@@ -44,9 +46,7 @@ const Register = () => {
               <div className="form__radio">
                 <Form.Item
                   name="role"
-                  value={role}
                   required={false}
-                  onChange={(event) => setRole(event.target.value)}
                   label="Je suis"
                   rules={[
                     {
@@ -72,7 +72,7 @@ const Register = () => {
                       message: 'Renseignez votre nom de famille'
                     }
                   ]}>
-                  <Input value={firstName} onChange={(event) => setFirstName(event.target.value)} placeholder="Nom" />
+                  <Input placeholder="Nom" />
                 </Form.Item>
               </div>
             </div>
@@ -87,7 +87,7 @@ const Register = () => {
                       message: 'Renseignez votre prénom'
                     }
                   ]}>
-                  <Input value={name} onChange={(event) => setName(event.target.value)} placeholder="Prénom" />
+                  <Input placeholder="Prénom" />
                 </Form.Item>
               </div>
             </div>
@@ -106,7 +106,7 @@ const Register = () => {
                       message: 'Renseignez une adresse mail valide'
                     }
                   ]}>
-                  <Input value={mail} onChange={(event) => setMail(event.target.value)} placeholder="Adresse Mail" />
+                  <Input placeholder="Adresse Mail" />
                 </Form.Item>
               </div>
             </div>
@@ -123,8 +123,6 @@ const Register = () => {
                   ]}>
                   <Input.Password
                     className="register-password"
-                    value={password}
-                    onChange={(event) => setPassword(event.target.value)}
                     placeholder="Mot de Passe"
                     iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                   />
@@ -149,8 +147,6 @@ const Register = () => {
                   ]}>
                   <Input.Password
                     className="register-password"
-                    value={password}
-                    onChange={(event) => setPassword(event.target.value)}
                     placeholder="Confirmez votre Mot de Passe"
                     iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                   />
@@ -160,12 +156,7 @@ const Register = () => {
 
             <div className="form__control">
               <div className="form__button">
-                <Button
-                  className="btn"
-                  type="primary"
-                  block
-                  htmlType="submit"
-                  disabled={!role || !firstName || !name || !mail || !password}>
+                <Button className="btn" type="primary" block htmlType="submit">
                   Valider
                 </Button>
               </div>

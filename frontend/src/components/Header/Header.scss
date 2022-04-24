@@ -26,3 +26,15 @@
     padding: 0 8px;
   }
 }
+
+@media (max-width: 768px) {
+  .header {
+    text-align: center;
+    display: block;
+    padding: 16px 0 24px 0 ;
+
+    &__menu {
+      justify-content: center;
+    }
+  }
+}

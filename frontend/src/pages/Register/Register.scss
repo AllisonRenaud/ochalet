@@ -21,3 +21,15 @@
   }
 }
 
+@media (max-width: 768px) {
+  .register {
+    &__image {
+      display: none;
+    }
+
+    &__form {
+      width: 100%;
+    }
+  }
+}
+

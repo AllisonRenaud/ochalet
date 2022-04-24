@@ -8,7 +8,7 @@ import ListBookings from '../../components/ListBookings/ListBookings';
 import ListOffers from '../../components/ListOffers/ListOffers';
 import UpdateProfile from '../../components/UpdateProfile/UpdateProfile';
 import { getLocationsAction } from '../../store/actions/locationActions';
-import { getOfferSelectedAction, updateOfferAction } from '../../store/actions/offerActions';
+import { cleanOfferSelectedAction, getOfferSelectedAction, updateOfferAction } from '../../store/actions/offerActions';
 
 import './UpdateOffer.scss';
 
@@ -65,12 +65,13 @@ const UpdateOffer = () => {
       formData.append(`image_${index}`, images[index]);
     }
 
-    dispatch(updateOfferAction(formData));
+    dispatch(updateOfferAction(formData, Number(offerId)));
 
     setIsSending(true);
   };
 
   useEffect(() => {
+    dispatch(cleanOfferSelectedAction());
     dispatch(getLocationsAction());
     dispatch(getOfferSelectedAction(offerId));
   }, []);
@@ -82,7 +83,7 @@ const UpdateOffer = () => {
   }, [isLoadingOffer, isSending]);
 
   return (
-    <div className="update-offer__container w-col-70">
+    <div className="update-offer__container">
       <h2 className="text-green-900">Modifier l'annonce</h2>
       {showMessage && (
         <div className="profile__alert">
@@ -343,7 +344,13 @@ const UpdateOffer = () => {
 
             <div className="form__control">
               <div className="form__button flex justify-center">
-                <Button loading={isLoadingOffer} className="btn" type="primary" size="large" htmlType="submit">
+                <Button
+                  loading={isLoadingOffer}
+                  className="btn"
+                  type="primary"
+                  size="large"
+                  htmlType="submit"
+                  disabled={images.length < 5 || imageDefault < 1}>
                   Valider
                 </Button>
               </div>

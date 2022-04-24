@@ -19,6 +19,7 @@ import IconWifi from '../../components/icons/IconWifi/IconWifi';
 import IconCleaning from '../../components/icons/IconCleaning/IconCleaning';
 import IconBreakfast from '../../components/icons/IconBreakfast/IconBreakfast';
 import {
+  cleanOfferSelectedAction,
   getDisabledDatesOfferAction,
   getOfferSelectedAction,
   setDateRangeSelectedAction
@@ -32,8 +33,10 @@ const OfferDetail = () => {
 
   const { offerId } = useParams();
 
-  const details = useSelector((state) => state.offer.offerSelected);
+  const offerSelected = useSelector((state) => state.offer.offerSelected);
   const datesDisabledOffer = useSelector((state) => state.offer.disabledDates);
+
+  const role = useSelector((state) => state.user?.profile?.role);
 
   const [startDate, setStartDate] = useState(dayjs().toDate());
   const [endDate, setEndDate] = useState(dayjs().toDate());
@@ -56,6 +59,7 @@ const OfferDetail = () => {
   }, [endDate]);
 
   useEffect(() => {
+    dispatch(cleanOfferSelectedAction());
     dispatch(getOfferSelectedAction(Number(offerId)));
     dispatch(getDisabledDatesOfferAction(Number(offerId)));
   }, []);
@@ -67,118 +71,118 @@ const OfferDetail = () => {
 
   return (
     <div className="offer-detail">
-      {details ? (
+      {offerSelected ? (
         <div>
           <div className="offer-detail__name">
-            <div className="offer-detail__title">{details.title}</div>
+            <h2 className="offer-detail__title">{offerSelected.title}</h2>
             <div className="offer-detail__location">
-              {details.zip_code} {details.city_name}
+              {offerSelected.zip_code} {offerSelected.city_name}
             </div>
           </div>
 
-          <div className="flex">
+          <div className="flex offer-detail__container">
             <div className="offer-detail__sidebar w-col-30 flex flex-col">
               <div className="offer-widget flex flex-col justify-center">
-                <div className="offer-widget__title">Calendrier</div>
-                <div className="offer-widget__description">
+                <h3>Calendrier</h3>
+                <div>
                   {disabledDates && (
-                    <DateRange
-                      ranges={[selectionRange]}
-                      onChange={onSelectedDateRange}
-                      minDate={dayjs().toDate()}
-                      maxDate={dayjs().add(1, 'year').toDate()}
-                      disabledDates={disabledDates}
-                      rangeColors={['#00887b']}
-                      locale={fr}
-                    />
+                    <div className="offer-detail__calendar">
+                      <DateRange
+                        ranges={[selectionRange]}
+                        onChange={onSelectedDateRange}
+                        minDate={dayjs().toDate()}
+                        maxDate={dayjs().add(1, 'year').toDate()}
+                        disabledDates={disabledDates}
+                        rangeColors={['#00887b']}
+                        locale={fr}
+                      />
+                    </div>
                   )}
                 </div>
               </div>
               <div className="offer-widget flex flex-col justify-center">
-                <div className="offer-widget__title">Prix TTC</div>
-                <div className="offer-widget__description">{details.price}€ TTC / nuitée</div>
+                <h3>Prix TTC</h3>
+                <div>{offerSelected.price}€ TTC / nuitée</div>
               </div>
               <div className="offer-widget flex flex-col justify-center">
-                <div className="offer-widget__title">Adresse</div>
-                <div className="offer-widget__description">
-                  {details.street_number}, {details.street_name} <br />
-                  {details.zip_code} {details.city_name} - {details.country}
+                <h3>Adresse</h3>
+                <div>
+                  {offerSelected.street_number}, {offerSelected.street_name} <br />
+                  {offerSelected.zip_code} {offerSelected.city_name} - {offerSelected.country}
                 </div>
               </div>
             </div>
-            <div className="w-col-70 offer-detail__container">
+            <div className="w-col-70">
               <div className="offer-detail__images">
-                <div className="flex">
-                  <img
-                    className="w-col-33 img-responsive offer-detail__images-item"
-                    src={details.media.images[0]}
-                    alt={details.title}
+                <div className="grid-images">
+                  <div
+                    className="offer-detail__image featured"
+                    style={{ backgroundImage: `url(${offerSelected.media.image_default})` }}
                   />
-                  <img
-                    className="w-col-33 img-responsive offer-detail__images-item"
-                    src={details.media.images[1]}
-                    alt={details.title}
+                  <div
+                    className="offer-detail__image image-1"
+                    style={{ backgroundImage: `url(${offerSelected.media.images[0]})` }}
                   />
-                  <img
-                    className="w-col-33 img-responsive offer-detail__images-item"
-                    src={details.media.images[2]}
-                    alt={details.title}
+                  <div
+                    className="offer-detail__image image-2"
+                    style={{ backgroundImage: `url(${offerSelected.media.images[1]})` }}
                   />
-                </div>
-
-                <div className="flex">
-                  <div className="offer-detail__images--default">
-                    <img
-                      className="img-responsive offer-detail__images-item"
-                      src={details.media.image_default}
-                      alt={details.title}
-                    />
-                  </div>
-                  <div className="offer-detail__images--mosaic flex flex-col">
-                    <img className="img-responsive offer-detail__images-item" src={details.media.images[3]} alt={details.title} />
-                    <img className="img-responsive offer-detail__images-item" src={details.media.images[4]} alt={details.title} />
-                  </div>
+                  <div
+                    className="offer-detail__image image-3"
+                    style={{ backgroundImage: `url(${offerSelected.media.images[2]})` }}
+                  />
+                  <div
+                    className="offer-detail__image image-4"
+                    style={{ backgroundImage: `url(${offerSelected.media.images[3]})` }}
+                  />
+                  <div
+                    className="offer-detail__image image-5"
+                    style={{ backgroundImage: `url(${offerSelected.media.images[4]})` }}
+                  />
                 </div>
               </div>
 
               <div className="offer-widget">
-                <div className="offer-widget__title">Description</div>
-                <div className="offer-widget__description">{details.description}</div>
-                <div className="offer-widget__title">Capacité d'accueil</div>
-                <div className="offer-widget__description">{details.people_capacity} personne(s)</div>
-                <div className="offer-widget__title">Prestations</div>
+                <h3>Description</h3>
+                <div>{offerSelected.description}</div>
+                <h3>Capacité d'accueil</h3>
+                <div>{offerSelected.people_capacity} personne(s)</div>
+                <h3>Prestations</h3>
                 <div className="offer-widget__ameneties">
                   <div className="offer-detail__ameneties-item">
-                    <IconBed height={16} width={16} /> {details.rooms} chambre(s)
+                    <IconBed height={16} width={16} /> {offerSelected.rooms} chambre(s)
                   </div>
                   <div className="offer-detail__ameneties-item">
-                    <IconBathroom height={16} width={16} /> {details.bathrooms} salle(s) de bain
+                    <IconBathroom height={16} width={16} /> {offerSelected.bathrooms} salle(s) de bain
                   </div>
                   <div className="offer-detail__ameneties-item">
-                    <IconDog height={16} width={16} /> {details.pets ? 'animaux acceptés' : 'animaux refusés'}
+                    <IconDog height={16} width={16} /> {offerSelected.pets ? 'animaux acceptés' : 'animaux refusés'}
                   </div>
                   <div className="offer-detail__ameneties-item">
-                    <IconTv height={16} width={16} /> {details.tv} télévison(s)
+                    <IconTv height={16} width={16} /> {offerSelected.tv} télévison(s)
                   </div>
                   <div className="offer-detail__ameneties-item">
-                    <IconWifi height={16} width={16} /> {details.wifi ? 'wifi disponible' : 'pas de wifi'}
+                    <IconWifi height={16} width={16} /> {offerSelected.wifi ? 'wifi disponible' : 'pas de wifi'}
                   </div>
                   <div className="offer-detail__ameneties-item">
                     <IconCleaning height={16} width={16} />{' '}
-                    {details.cleaning ? 'service de ménage inclu' : 'pas de service de ménage'}
+                    {offerSelected.cleaning ? 'service de ménage inclus' : 'pas de service de ménage'}
                   </div>
                   <div className="offer-detail__ameneties-item">
                     <IconBreakfast height={16} width={16} />{' '}
-                    {details.breakfast ? 'petits déjeuners inclus' : 'petits déjeuners non inclus'}
+                    {offerSelected.breakfast ? 'petits déjeuners inclus' : 'petits déjeuners non inclus'}
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
           <div className="offer-detail__button flex justify-center">
-            <Button type="primary" htmlType="submit" size="large" onClick={() => navigate('/booking/')}>
-              Réserver
-            </Button>
+            {role !== 'seller' && (
+              <Button type="primary" htmlType="submit" size="large" onClick={() => navigate('/booking/')}>
+                Réserver
+              </Button>
+            )}
           </div>
         </div>
       ) : (

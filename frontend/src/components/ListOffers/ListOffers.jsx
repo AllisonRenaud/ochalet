@@ -28,12 +28,12 @@ const ListOffers = () => {
   }, [role]);
 
   return (
-    <div className="offers__container w-col-70">
+    <div className="offers__container">
       <h2 className="text-green-900">Les annonces</h2>
-      <div className="offers__cards flex flex-wrap">
-        {offers.length > 0 ? (
-          offers.map((offer) => (
-            <div className="w-col-50" key={offer.id}>
+      {offers.length > 0 ? (
+        <div className="offers__cards flex flex-wrap">
+          {offers.map((offer) => (
+            <div className="w-col-33" key={offer.id}>
               <div className="offers__card ">
                 <OfferCard offer={offer} />
               </div>
@@ -48,16 +48,18 @@ const ListOffers = () => {
                     Voir
                   </Button>
                 </div>
-                <div className="offers__button">
-                  <Button
-                    onClick={() => navigate(`/dashboard/offer/${offer.id}`)}
-                    type="default"
-                    block
-                    size="small"
-                    htmlType="button">
-                    Modifier
-                  </Button>
-                </div>
+                {role === 'seller' && (
+                  <div className="offers__button">
+                    <Button
+                      onClick={() => navigate(`/dashboard/offer/${offer.id}`)}
+                      type="default"
+                      block
+                      size="small"
+                      htmlType="button">
+                      Modifier
+                    </Button>
+                  </div>
+                )}
                 <div className="offers__button">
                   <Button type="default" block size="small" htmlType="button" onClick={() => onDeleteOfferHandler(offer.id)}>
                     Supprimer
@@ -65,11 +67,13 @@ const ListOffers = () => {
                 </div>
               </div>
             </div>
-          ))
-        ) : (
+          ))}
+        </div>
+      ) : (
+        <div className="flex items-center justify-center" style={{ height: 500 }}>
           <Empty description="Pas d'annonce pour le moment" />
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

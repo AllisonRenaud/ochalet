@@ -1,20 +1,29 @@
 @import "../../scss/variables";
 
 .locations {
-  margin: 100px;
 
-&__card {
-  display: grid;
-  grid-template-columns: 400px 400px 400px;
-  grid-column-gap: 5px;
-  grid-row-gap: 5px;
-}
+
+  &__card {
+
+  }
 
   &__title {
-    font-size: $font-xxl;
-    font-weight: 500;
-    margin: 70px 0 16px 0px;
+    margin-top: 24px;
     color: $color-green-900;
     text-align: center;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .locations {
+
+    &__list {
+      flex-wrap: wrap;
+    }
+
+    &__card {
+      width: 100%;
+    }
   }
 }

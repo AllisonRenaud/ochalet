@@ -4,9 +4,16 @@ import ListBookings from '../../components/ListBookings/ListBookings';
 import './Dashboard.scss';
 
 const DashboardBookings = () => (
-  <div className="container flex">
-    <DashboardSidebar />
-    <ListBookings />
+  <div className="dashboard">
+    <div className="container flex dashboard__container">
+      <div className="w-col-30">
+        <DashboardSidebar />
+      </div>
+
+      <div className="w-col-70">
+        <ListBookings />
+      </div>
+    </div>
   </div>
 );
 

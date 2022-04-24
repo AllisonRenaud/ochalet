@@ -1,5 +1,5 @@
 import './Booking.scss';
-import { Button, Form, Checkbox, Empty } from 'antd';
+import { Button, Empty } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
 import 'dayjs/locale/fr';
@@ -55,91 +55,92 @@ const Booking = () => {
         {isConnected ? (
           <div>
             {dateRangeSelected && offerSelected ? (
-              <div className="flex content-start justify-between">
-                <div className="booking__card">
-                  <h2 className="">Confirmer</h2>
-                  <div className="booking__section">
-                    <h3>Votre voyage</h3>
-                    <div className="booking__dates">
-                      <h4>Dates</h4>
-                      <div>
-                        {dayjs(dateRangeSelected.startDate).format('DD MMM')} —{' '}
-                        {dayjs(dateRangeSelected.endDate).format('DD MMM')}
+              <div>
+                <div className="booking__confirmation flex content-start justify-between">
+                  <div className="booking__card booking__info w-col-60">
+                    <h2 className="">Confirmez</h2>
+                    <div className="booking__section">
+                      <h3>Votre voyage</h3>
+                      <div className="booking__dates">
+                        <h4>Dates</h4>
+                        <div>
+                          {dayjs(dateRangeSelected.startDate).format('DD MMM')} —{' '}
+                          {dayjs(dateRangeSelected.endDate).format('DD MMM')}
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <hr />
+                    <hr />
 
-                  <div className="booking__section">
-                    <h3>Conditions d'annulation</h3>
-                    <div className="confirmation__condition-detail">
-                      <p>
-                        Remboursement : vous pouvez annuler votre séjour 30 jours avant votre date d'arrivée, sans frais. Passé ce
-                        délais, vous ne bénéficierez d'aucun remboursement.
-                      </p>
-                      <p>
-                        Notre Politique relative aux cas de force majeure ne couvre pas les perturbations de voyage causées par le
-                        Covid-19.
-                      </p>
+                    <div className="booking__section">
+                      <h3>Conditions d'annulation</h3>
+                      <div className="confirmation__condition-detail">
+                        <p>
+                          Remboursement : vous pouvez annuler votre séjour 30 jours avant votre date d'arrivée, sans frais. Passé
+                          ce délais, vous ne bénéficierez d'aucun remboursement.
+                        </p>
+                        <p>
+                          Notre Politique relative aux cas de force majeure ne couvre pas les perturbations de voyage causées par
+                          le Covid-19.
+                        </p>
+                      </div>
                     </div>
+
+                    <hr />
                   </div>
+                  <div className="booking__card booking__cart w-col-40">
+                    <div className="booking__detail">
+                      <div className="booking__section flex">
+                        <div className="w-col-40">
+                          <img className="img-responsive" src={offerSelected.media.image_default} alt={offerSelected.title} />
+                        </div>
+                        <div className="booking__description">
+                          <div className="font-lg">{offerSelected.title}</div>
+                          <div className="font-sm">
+                            {offerSelected.city_name}, {offerSelected.location.name}
+                          </div>
+                        </div>
+                      </div>
 
-                  <hr />
+                      <hr />
 
-                  <div className="booking__section">
-                    <p className="booking__terms">
-                      En sélectionnant le bouton ci-dessous, j'accepte{' '}
-                      <Link target="_blank" to="/cgv" className="link">
-                        les conditions générales de vente.
-                      </Link>
-                    </p>
-                    <div className="booking__button flex justify-center">
-                      <Button
-                        loading={isLoadingBooking}
-                        className="btn"
-                        type="primary"
-                        size="large"
-                        htmlType="submit"
-                        onClick={onSubmitBooking}>
-                        Confirmer la réservation
-                      </Button>
+                      <div className="booking__section">
+                        <h3>Détail du prix</h3>
+                        <div className="flex justify-between font-lg">
+                          <div>
+                            {offerSelected.price}€ TTC x {nights} nuits
+                          </div>
+                          <div>
+                            <strong>{offerSelected.price * nights} €</strong>
+                          </div>
+                        </div>
+                      </div>
+
+                      <hr />
+
+                      <div className="booking__section">
+                        Une caution de 500€ est demandée pour ce chalet. Elle sera prélevée séparément au moment de votre arrivée.
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div className="booking__card w-col-60">
-                  <div className="booking__detail">
-                    <div className="booking__section flex">
-                      <div className="w-col-40">
-                        <img className="img-responsive" src={offerSelected.media.image_default} alt={offerSelected.title} />
-                      </div>
-                      <div className="booking__description">
-                        <div className="font-lg">{offerSelected.title}</div>
-                        <div className="font-sm">
-                          {offerSelected.city_name}, {offerSelected.location.name}
-                        </div>
-                      </div>
-                    </div>
-
-                    <hr />
-
-                    <div className="booking__section">
-                      <h3>Détail du prix</h3>
-                      <div className="flex justify-between font-lg">
-                        <div>
-                          {offerSelected.price}€ TTC x {nights} nuits
-                        </div>
-                        <div>
-                          <strong>{offerSelected.price * nights} €</strong>
-                        </div>
-                      </div>
-                    </div>
-
-                    <hr />
-
-                    <div className="booking__section">
-                      Une caution de 500€ est demandée pour ce chalet. Elle sera prélevée séparément au moment de votre arrivée.
-                    </div>
+                <div className=" flex flex-col items-center justify-center">
+                  <p className="booking__terms">
+                    En sélectionnant le bouton ci-dessous, j'accepte{' '}
+                    <Link target="_blank" to="/cgv" className="link">
+                      les conditions générales de vente.
+                    </Link>
+                  </p>
+                  <div className="booking__button ">
+                    <Button
+                      loading={isLoadingBooking}
+                      className="btn"
+                      type="primary"
+                      size="large"
+                      htmlType="submit"
+                      onClick={onSubmitBooking}>
+                      Confirmer la réservation
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -154,7 +155,6 @@ const Booking = () => {
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center" style={{ height: 500 }}>
-            {/* TODO: add message for role === seller */}
             <h2 className="">Connectez-vous pour réserver ce chalet</h2>
             <div className="flex">
               <div className="booking__button">

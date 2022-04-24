@@ -7,7 +7,7 @@ const DashboardSidebar = () => {
   const role = useSelector((state) => state.user?.profile?.role);
 
   return (
-    <div className="dashboard__sidebar flex flex-col w-col-30">
+    <div className="dashboard__sidebar flex flex-col">
       {role === 'admin' && (
         <div>
           <div className="sidebar-item">

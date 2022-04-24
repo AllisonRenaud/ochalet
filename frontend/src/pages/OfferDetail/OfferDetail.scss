@@ -1,8 +1,6 @@
-@import "../../scss/variables";
+@import '../../scss/variables';
 
 .offer-detail {
-
-
   &__name {
     margin: 24px 0;
   }
@@ -15,25 +13,47 @@
     text-align: center;
   }
 
-  &__location{
+  &__location {
     font-size: $font-xl;
     font-weight: 600;
     text-align: center;
   }
 
-  &__images{
+  &__images {
     margin-bottom: 24px;
-    &-item {
-      padding: 5px;
-      border-radius: $border-radius-16;
+    
+    .grid-images {  display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+      gap: 12px;
+      grid-auto-flow: row;
+      grid-template-areas:
+        "image-1 image-2 image-3"
+        "featured featured image-4"
+        "featured featured image-5";
     }
-    &--default {
-      width: 66%;
-    }
-    &--mosaic {
-      width: 33%;
-    }
+    
+    .featured { grid-area: featured; }
+    
+    .image-1 { grid-area: image-1;  height: 200px; }
+    
+    .image-2 { grid-area: image-2;  height: 200px; }
+    
+    .image-3 { grid-area: image-3; height: 200px; }
+    
+    .image-4 { grid-area: image-4; height: 200px; }
+    
+    .image-5 { grid-area: image-5;  height: 200px;}
+    
   }
+
+  &__image {
+    border-radius: $border-radius-16;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+
 
   .offer-widget {
     background-color: $color-white;
@@ -42,33 +62,18 @@
     padding: 32px;
     margin-bottom: 32px;
 
-    &__title {
-      font-size: $font-xl;
-      font-weight: 600;
-      margin: 16px 0;
-    }
-
-    &__description {
-      font-size: $font-lg;
-    }
-
-    &__amenities{
+  
+    &__amenities {
       margin-bottom: 16px;
-    }    
+    }
 
     .offer-detail {
-
       &__ameneties-item {
-          font-size: $font-lg;
-          margin-bottom: 3px;
-      }
-
-      &__extra-detail {
-        font-size: $font-lg;
+        margin-bottom: 3px;
       }
     }
   }
-  
+
   &__sidebar {
     margin-right: 32px;
   }
@@ -76,5 +81,29 @@
   &__button {
     margin-bottom: 24px;
   }
+}
 
+@media (max-width: 768px) {
+  .offer-detail {
+    margin: 0 32px;
+    &__container {
+      flex-direction: column-reverse;
+    }
+
+    &__images-top {
+      .w-col-33 {
+        width: 33% !important;
+      }
+    }
+
+    &__calendar {
+      .rdrCalendarWrapper {
+        width: 100% !important;
+      }
+
+      .rdrMonth  {
+        width: 100%;
+      }
+    }
   }
+}

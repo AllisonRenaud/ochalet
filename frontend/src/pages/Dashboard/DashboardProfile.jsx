@@ -5,8 +5,12 @@ import './Dashboard.scss';
 
 const DashboardProfile = () => (
   <div className="container flex">
-    <DashboardSidebar />
-    <UpdateProfile />
+    <div className="w-col-30">
+      <DashboardSidebar />
+    </div>
+    <div className="w-col-70">
+      <UpdateProfile />
+    </div>
   </div>
 );
 
