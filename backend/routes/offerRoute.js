@@ -25,6 +25,7 @@ offerRouter.post(
 offerRouter.patch(
   "/offers/:offerId/",
   [authMiddleware, rolesMiddleware(["seller"])],
+  uploadFilesMiddleware,
   offerController.updateOffer
 );
 

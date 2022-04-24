@@ -73,10 +73,6 @@ const offerController = {
       });
       response.status(200).json(newOffer);
     } catch (error) {
-      console.log(
-        "🚀 -> file: offerController.js -> line 66 -> createOffer: -> error",
-        error
-      );
       response.status(500).send(error);
     }
   },
@@ -100,10 +96,43 @@ const offerController = {
   updateOffer: async (request, response) => {
     try {
       const offerId = parseInt(request.params.offerId);
-      const newOffer = request.body;
+
+      const image_default = await cloudinary.uploader.upload(
+        request.files.image_default.filepath
+      );
+
+      let images = [];
+      for (let index = 0; index < 5; index++) {
+        const newImage = await cloudinary.uploader.upload(
+          request.files[`image_${index}`].filepath
+        );
+
+        images.push(newImage.url);
+      }
+
+      const media = {
+        image_default: image_default.url,
+        images: images,
+      };
+
       const offer = await prisma.offer.update({
         where: { id: offerId },
-        data: newOffer,
+        data: {
+          ...request.body,
+          street_number: parseInt(request.body.street_number),
+          zip_code: parseInt(request.body.zip_code),
+          people_capacity: parseInt(request.body.people_capacity),
+          rooms: parseInt(request.body.rooms),
+          bathrooms: parseInt(request.body.bathrooms),
+          tv: parseInt(request.body.tv),
+          price: parseInt(request.body.price),
+          locationId: parseInt(request.body.locationId),
+          wifi: request.body.wifi === "true",
+          pets: request.body.pets === "true",
+          cleaning: request.body.cleaning === "true",
+          breakfast: request.body.breakfast === "true",
+          media: media,
+        },
       });
 
       response.status(200).json(offer);
