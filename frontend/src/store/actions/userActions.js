@@ -2,12 +2,17 @@ import axios from 'axios';
 import axiosInstance from '../../utils/axiosInstance';
 
 // eslint-disable-next-line import/no-cycle
-import { SET_CONNECTED } from './authActions';
+import { loginAction, setConnectedAction, SET_CONNECTED } from './authActions';
 
 export const LOADING_USER = 'LOADING_USER';
 export const loadingUserAction = (payload) => ({
   type: LOADING_USER,
   payload
+});
+
+export const CLEAN_PROFILE = 'CLEAN_PROFILE';
+export const cleanProfileAction = () => ({
+  type: CLEAN_PROFILE
 });
 
 export const REGISTER = 'REGISTER';
@@ -18,6 +23,10 @@ export const registerAction = (payload) => async (dispatch) => {
       type: REGISTER,
       payload: response.data
     });
+
+    if (response.data) {
+      dispatch(loginAction({ email: payload.email, password: payload.password }));
+    }
   } catch (error) {
     console.log(error);
   }
