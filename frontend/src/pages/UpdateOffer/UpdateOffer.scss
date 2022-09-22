@@ -1,0 +1,40 @@
+@import "../../scss/variables";
+
+.update-offer__sidebar {
+  margin: 32px;
+  background-color: $color-white;
+  border: 1px solid $color-gray-200;
+  border-radius: $border-radius-8;
+  padding: 32px;
+  color: $color-green-600;
+  font-size: $font-xl;
+}
+
+.update-offer {
+
+  &__container {
+    margin: 32px 0;
+    background-color: $color-white;
+    border: 1px solid $color-gray-200;
+    border-radius: $border-radius-8;
+    padding: 32px;
+  }
+
+  &__secondary-title {
+    font-size: $font-xl;
+    font-weight: 500;
+    margin: 32px 0;
+  }
+
+  &__number-address {
+    margin-right: 24px;
+  }
+
+  &__zipcode-address {
+    margin-right: 24px;
+  }
+
+  &__item {
+    padding-right: 32px;
+  }
+}

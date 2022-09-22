@@ -1,0 +1,39 @@
+@import "../../scss/variables";
+
+.login {
+  &__container {
+    height: 100vh;
+  }
+
+  &__image {
+    height: 100%;
+    background-color: $color-green-700;
+    padding: 32px;
+    svg {
+      width: 100%;
+    }
+  }
+
+  &__logo {
+    padding-bottom: 64px;
+  }
+
+  &__title {
+    font-size: $font-xxl;
+    font-weight: 600;
+    margin: 70px 0 16px 0px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .login {
+    &__image {
+      display: none;
+    }
+
+    &__form {
+      width: 100%;
+    }
+  }
+}

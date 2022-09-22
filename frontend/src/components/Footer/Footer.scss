@@ -1,0 +1,19 @@
+@import "../../scss/variables";
+
+.footer{
+  height: 58px;
+  position: absolute;
+  background-color: $color-white;
+  width: 100%;
+  font-size: $font-lg;
+  padding: 8px;
+  border-top: 1px solid $color-gray-50;
+  text-align: center;
+  bottom: 0;
+
+  &--transparent {
+    background-color: transparent;
+    border-top: none;
+  }
+  
+}

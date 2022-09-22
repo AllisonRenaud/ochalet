@@ -1,0 +1,18 @@
+@import '../../scss/variables';
+
+.file {
+  border: 2px solid $color-gray-200;
+  border-radius: 8px;
+  padding: 8px 28px;
+
+  &__name {
+    font-weight: 500;
+    margin-left: 2px;
+    font-size: $font-base;
+  }
+
+  &__delete {
+    color: $color-red-100;
+
+  }
+}

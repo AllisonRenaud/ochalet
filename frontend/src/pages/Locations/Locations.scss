@@ -1,0 +1,29 @@
+@import "../../scss/variables";
+
+.locations {
+
+
+  &__card {
+
+  }
+
+  &__title {
+    margin-top: 24px;
+    color: $color-green-900;
+    text-align: center;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .locations {
+
+    &__list {
+      flex-wrap: wrap;
+    }
+
+    &__card {
+      width: 100%;
+    }
+  }
+}

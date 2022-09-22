@@ -1,0 +1,93 @@
+
+.form{
+
+  &__icon {
+    margin-right: 16px;
+  
+  }
+
+  &__input {
+    margin-bottom: 16px;
+    .ant-input , .ant-input-password, .ant-radio-button {
+      border-bottom: 2px solid;
+      border-top: 0;
+      border-right: 0;
+      border-left: 0;
+      border-radius: 0;
+      padding-left: 0;
+      background-color: transparent !important;
+
+      &:focus, &:focus-within, &:focus-visible, &:hover { 
+        box-shadow: none !important;
+        outline: none !important;
+        border-color: $color-green-500 !important;
+      }
+      .anticon-eye {
+        
+          color: $color-green-500 !important;
+        
+      }
+
+    }
+    textarea {
+     border: 2px solid !important;
+     padding-left: 4px !important;
+    }
+
+  }
+
+  &__radio {
+
+    .ant-radio-button-wrapper {
+      &:hover {
+        color: $color-green-500 !important;
+      }
+    }
+
+    .ant-radio-button-wrapper-checked {
+      background: $color-green-500 !important;
+      border-color:$color-green-500 !important;
+
+      &:hover {
+        color: $color-white !important;
+      }
+      
+    }
+  }
+
+  &__forgot-password {
+    
+    font-weight: 500;
+    margin: 32px 0;
+    color: $color-green-500;
+  }
+
+  &__no-account {
+  
+    margin-top: 32px ;
+  }
+
+  &__register {
+    
+    font-weight: 500;
+    margin-left: 4px;
+    color: $color-green-500;
+    font-weight: 600;
+ 
+
+  }
+
+  // &__button {
+  //   .ant-btn-primary {
+  //     border-radius: $border-radius-50;
+  //     border-color: $color-green-500;
+  //     background: $color-green-500;
+  //     &:hover, &:active, &:focus {
+  //       border-color: $color-green-100;
+  //     background: $color-green-100;
+  //     }
+  //   }
+  // }
+
+}
+

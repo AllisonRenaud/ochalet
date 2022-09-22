@@ -1,0 +1,40 @@
+@import "../../scss/variables";
+
+.header{
+  padding: 0 16px;
+  background-color: $color-white;
+  left: 0;
+  width: 100%;
+  box-shadow: $shadow;
+
+  &--transparent {
+    background-color: transparent;
+    box-shadow: $shadow-none;
+  }
+  
+  &__logo {
+    padding: 8px 24px;
+    &--white {
+      color: $color-white;
+    }
+  }
+
+  &__dashboard-link{
+    font-size: $font-lg;
+    color: $color-green-900;
+    font-weight: 500;
+    padding: 0 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    text-align: center;
+    display: block;
+    padding: 16px 0 24px 0 ;
+
+    &__menu {
+      justify-content: center;
+    }
+  }
+}

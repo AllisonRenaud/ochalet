@@ -1,0 +1,11 @@
+{
+  "name": "OChaletAll",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start:db": "cd backend && sudo docker-compose up",
+    "start": "concurrently \"yarn start:backend\"  \"yarn start:frontend\"", 
+    "start:frontend": "cd frontend && yarn start",
+    "start:backend": "cd backend && yarn start"
+  }
+}

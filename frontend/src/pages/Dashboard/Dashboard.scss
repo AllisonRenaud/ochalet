@@ -1,0 +1,27 @@
+@import "../../scss/variables";
+
+
+.dashboard {
+
+  
+  &__sidebar {
+    margin: 32px;
+    background-color: $color-white;
+    border: 1px solid $color-gray-200;
+    border-radius: $border-radius-8;
+    padding: 32px;
+    color: $color-green-600;
+    font-size: $font-xl;
+  }
+  
+  
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    &__container {
+    display: block;
+    }
+    
+  }
+}
